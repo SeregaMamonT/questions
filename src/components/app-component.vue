@@ -3,8 +3,9 @@
     <p>Hello Wooodpecker!</p>
     <question
         v-for="(question, index) in questions"
-        v-bind:index="index + 1"
-        v-bind:data="question"
+        :key="index + 1"
+        :index="index + 1"
+        :data="question"
     />
   </div>
 </template>

@@ -7,6 +7,8 @@ const APP_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = props.outputPath ? path.resolve(props.outputPath) : path.resolve(__dirname, 'public');
 
 const config = {
+  mode: 'development',
+
   devtool: 'source-map',
 
   entry: APP_DIR + '/index.js',
