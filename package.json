@@ -5,7 +5,8 @@
   "main": "index.js",
   "dependencies": {
     "firebase": "^5.3.0",
-    "vue": "^2.5.16"
+    "vue": "^2.5.16",
+    "vuefire": "^2.0.0-alpha.14"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
