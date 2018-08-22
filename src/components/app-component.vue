@@ -1,12 +1,7 @@
 <template>
   <div>
     <p>Hello Wooodpecker!</p>
-    <question
-        v-for="(question, index) in questions"
-        :key="index + 1"
-        :index="index + 1"
-        :data="question"
-    />
+    <question-list :questions="questions"/>
   </div>
 </template>
 
@@ -14,7 +9,7 @@
   import Vue from 'vue';
   import firebase from 'firebase/app';
   import 'firebase/firestore';
-  import Question from './question.vue';
+  import QuestionList from './question-list.vue';
 
   let firebaseApp = firebase.initializeApp({
     databaseURL: 'https://messaging-mamo.firebaseio.com',
@@ -26,7 +21,7 @@
 
   export default Vue.extend({
     components: {
-      'question': Question,
+      'question-list': QuestionList,
     },
 
     data() {
