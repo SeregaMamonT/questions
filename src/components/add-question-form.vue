@@ -1,11 +1,10 @@
 <template>
   <v-form>
     <v-textarea
-        name="input-7-1"
-        value=""
-        placeholder="Text"
+        :placeholder="$t('question_text')"
     ></v-textarea>
-    <v-text-field placeholder="Answer"
+    <v-text-field
+        :placeholder="$t('answer')"
     ></v-text-field>
   </v-form>
 </template>

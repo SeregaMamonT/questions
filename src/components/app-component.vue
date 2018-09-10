@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-title>Questions</v-toolbar-title>
+      <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container fluid class="root">

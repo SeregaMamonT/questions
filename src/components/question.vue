@@ -3,8 +3,8 @@
     <div class="question-index">#{{index}}</div>
     <div class="question">
       <div>{{data.text}}</div>
-      <div>Answer: {{data.answer}}</div>
-      <div>Author(s): {{data.author}}</div>
+      <div>{{$t('answer')}}: {{data.answer}}</div>
+      <div>{{$t('author_s')}}: {{data.author}}</div>
     </div>
   </div>
 </template>
