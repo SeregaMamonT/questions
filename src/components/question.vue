@@ -1,5 +1,5 @@
 <template>
-  <div class="root">
+  <div class="question-root">
     <div class="question-index">#{{index}}</div>
     <div class="question">
       <div>{{data.text}}</div>
@@ -18,7 +18,7 @@
 </script>
 
 <style scoped>
-  .root:hover {
+  .question-root:hover {
     border: 1px dashed forestgreen;
     border-radius: 5px;
   }
@@ -27,6 +27,7 @@
     width: 50px;
     display: inline-block;
   }
+
   .question {
     display: inline-block;
   }
