@@ -10,11 +10,9 @@
 </template>
 
 <script>
-  import Vue from 'vue';
-
-  export default Vue.extend({
+  export default {
     props: ['data', 'index'],
-  });
+  };
 </script>
 
 <style scoped>

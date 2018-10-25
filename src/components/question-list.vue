@@ -10,16 +10,15 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import Question from './question.vue';
 
-  export default Vue.extend({
+  export default {
     components: {
       'question': Question,
     },
 
     props: ['questions']
-  });
+  };
 </script>
 
 <style>

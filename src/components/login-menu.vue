@@ -49,11 +49,10 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import firebase from 'firebase/app';
   import 'firebase/auth';
 
-  export default Vue.extend({
+  export default {
     data() {
       return {
         email: '',
@@ -82,7 +81,7 @@
         firebase.app().auth().signOut().then();
       }
     }
-  });
+  };
 </script>
 
 <style scoped>
