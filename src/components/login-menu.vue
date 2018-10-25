@@ -73,12 +73,24 @@
     methods: {
       signIn() {
         firebase.app().auth().signInWithEmailAndPassword(this.email, this.password)
-            .then((res) => console.log(res))
+            .then(res => {
+              console.log(res);
+              this.reloadPage();
+            })
             .catch(console.log);
       },
 
       signOut() {
-        firebase.app().auth().signOut().then();
+        firebase.app().auth().signOut()
+            .then(res => {
+              console.log(res);
+              this.reloadPage();
+            })
+            .catch(console.log);
+      },
+
+      reloadPage() {
+        this.$router.go(0);
       }
     }
   };
