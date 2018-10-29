@@ -3,7 +3,11 @@
     <v-toolbar app>
       <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <login-menu></login-menu>
+      <login-menu
+          :signIn="signIn"
+          :signOut="signOut"
+          :isAuthenticated="isAuthenticated"
+      ></login-menu>
     </v-toolbar>
     <v-content>
       <main-page :questions="questions"></main-page>
@@ -14,6 +18,7 @@
 <script>
   import firebase from 'firebase/app';
   import 'firebase/firestore';
+  import 'firebase/auth';
 
   import LoginMenu from './login-menu.vue';
   import MainPage from './main-page.vue';
@@ -37,7 +42,17 @@
     data() {
       return {
         questions: [],
+        isAuthenticated: false,
       };
+    },
+
+    created() {
+      firebase.app().auth().onAuthStateChanged(user => {
+        if (user) {
+          console.log(user);
+        }
+        this.isAuthenticated = !!user;
+      });
     },
 
     firestore() {
@@ -45,6 +60,30 @@
         questions: firestore.collection('questions')
       };
     },
+
+    methods: {
+      signIn(email, password) {
+        firebase.app().auth().signInWithEmailAndPassword(email, password)
+            .then(res => {
+              console.log(res);
+              this.reloadPage();
+            })
+            .catch(console.log);
+      },
+
+      signOut() {
+        firebase.app().auth().signOut()
+            .then(res => {
+              console.log(res);
+              this.reloadPage();
+            })
+            .catch(console.log);
+      },
+
+      reloadPage() {
+        this.$router.go(0);
+      }
+    }
   };
 </script>
 

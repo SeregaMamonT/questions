@@ -37,7 +37,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn flat
-                               @click="signIn"
+                               @click="signIn(email, password)"
                         >
                             {{$t('Sign_in')}}
                         </v-btn>
@@ -49,50 +49,15 @@
 </template>
 
 <script>
-  import firebase from 'firebase/app';
-  import 'firebase/auth';
-
   export default {
+    props: ['isAuthenticated', 'signIn', 'signOut'],
+
     data() {
       return {
         email: '',
-        password: '',
-        isAuthenticated: false,
+        password: ''
       };
     },
-
-    created() {
-      firebase.app().auth().onAuthStateChanged(user => {
-        if (user) {
-          console.log(user);
-        }
-        this.isAuthenticated = !!user;
-      });
-    },
-
-    methods: {
-      signIn() {
-        firebase.app().auth().signInWithEmailAndPassword(this.email, this.password)
-            .then(res => {
-              console.log(res);
-              this.reloadPage();
-            })
-            .catch(console.log);
-      },
-
-      signOut() {
-        firebase.app().auth().signOut()
-            .then(res => {
-              console.log(res);
-              this.reloadPage();
-            })
-            .catch(console.log);
-      },
-
-      reloadPage() {
-        this.$router.go(0);
-      }
-    }
   };
 </script>
 
