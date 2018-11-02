@@ -10,7 +10,10 @@
       ></login-menu>
     </v-toolbar>
     <v-content>
-      <main-page :questions="questions"></main-page>
+      <main-page
+          :isAuthenticated="isAuthenticated"
+          :questions="questions"
+      ></main-page>
     </v-content>
   </v-app>
 </template>

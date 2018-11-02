@@ -1,7 +1,11 @@
 <template>
   <v-container fluid>
-    <add-question-form/>
-    <question-list :questions="questions" />
+    <v-layout row wrap justify-center>
+      <v-flex xs12 sm12 md10 lg6>
+        <add-question-form v-if="isAuthenticated"/>
+        <question-list :questions="questions" />
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -17,7 +21,7 @@
       'add-question-form': AddQuestionForm,
     },
 
-    props: ['questions']
+    props: ['questions', 'isAuthenticated']
   };
 </script>
 
