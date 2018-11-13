@@ -24,9 +24,6 @@
   import LoginMenu from './login-menu.vue';
   import MainPage from './main-page.vue';
 
-  import firestore from '../db';
-  //firestore.settings({ timestampsInSnapshots: true });
-
   export default {
     components: {
       'login-menu': LoginMenu,
@@ -35,19 +32,16 @@
 
     data() {
       return {
-        questions: [],
-      };
-    },
-
-    firestore() {
-      return {
-        questions: firestore.collection('questions')
       };
     },
 
     computed: {
       ...mapGetters('user', {
         loggedIn: 'loggedIn'
+      }),
+
+      ...mapGetters('question', {
+        questions: 'list'
       })
     },
 
@@ -56,6 +50,10 @@
         login: 'login',
         logout: 'logout'
       }),
+
+      ...mapActions('question', {
+        findQuestions: 'list'
+      })
     }
   };
 </script>
