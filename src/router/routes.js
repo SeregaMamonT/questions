@@ -1,4 +1,4 @@
-import AppComponent from './components/app-component.vue';
+import AppComponent from '../components/app-component.vue';
 
 export default [
   { path: '/', component: AppComponent },
