@@ -9,6 +9,8 @@ import './auth';
 import translations from './translations.js';
 import 'vuetify/dist/vuetify.min.css';
 
+import AppComponent from './components/app-component.vue';
+
 Vue.use(Vuetify);
 Vue.use(VueI18n);
 
@@ -19,6 +21,9 @@ const i18n = new VueI18n({
 
 new Vue({
   el: '#vue-app',
+  components: {
+    'app-component': AppComponent,
+  },
   store,
   router,
   i18n,

@@ -6,7 +6,7 @@
       <login-menu></login-menu>
     </v-toolbar>
     <v-content>
-      <main-page></main-page>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
