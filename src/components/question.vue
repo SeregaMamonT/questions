@@ -2,6 +2,7 @@
   <div class="question-root">
     <div class="question-index">#{{index}}</div>
     <div class="question">
+      <a :href="questionUrl">{{data.id}}</a>
       <div>{{data.text}}</div>
       <div>{{$t('answer')}}: {{data.answer}}</div>
       <div>{{$t('author_s')}}: {{data.author}}</div>
@@ -12,6 +13,12 @@
 <script>
   export default {
     props: ['data', 'index'],
+
+    computed: {
+      questionUrl() {
+        return `/#/question/${this.data.id}`
+      }
+    }
   };
 </script>
 

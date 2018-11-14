@@ -1,11 +1,13 @@
 import db from '../../db';
-import {PUSH_QUESTION, RESET_QUESTION_LIST} from './mutations';
+import {PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION} from './mutations';
 
 const state = {
-  list: []
+  list: [],
+  current: null
 };
 
 const getters = {
+  current: state => state.current,
   list: state => state.list
 };
 
@@ -16,6 +18,10 @@ const mutations = {
 
   [RESET_QUESTION_LIST](state) {
     state.list = [];
+  },
+
+  [SET_QUESTION](state, question) {
+    state.current = question;
   }
 };
 
@@ -38,6 +44,17 @@ const actions = {
         // TODO: log error in debug mode
         // debug('Failed fetch for questions:', error);
       });
+  },
+
+  readCurrent({commit}, id) {
+    db.collection('questions').doc(id).get().then(question => {
+      if (question.exists) {
+        commit(SET_QUESTION, {
+          id: question.id,
+          ...question.data()
+        });
+      }
+    });
   }
 };
 
