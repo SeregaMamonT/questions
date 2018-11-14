@@ -1,23 +1,16 @@
 import Vue from 'vue';
 import Vuetify from 'vuetify';
-import VueI18n from 'vue-i18n';
+
+import 'vuetify/dist/vuetify.min.css';
 
 import store from './store';
 import router from './router';
+import i18n from './i18n';
 import './auth';
-
-import translations from './translations.js';
-import 'vuetify/dist/vuetify.min.css';
 
 import AppComponent from './components/app-component.vue';
 
 Vue.use(Vuetify);
-Vue.use(VueI18n);
-
-const i18n = new VueI18n({
-  locale: 'ru',
-  messages: translations,
-});
 
 new Vue({
   el: '#vue-app',
