@@ -37,7 +37,7 @@
                     <v-card-actions>
                         <v-spacer></v-spacer>
                         <v-btn flat
-                               @click="signIn(email, password)"
+                               @click="signIn({email, password})"
                         >
                             {{$t('Sign_in')}}
                         </v-btn>
@@ -49,15 +49,28 @@
 </template>
 
 <script>
-  export default {
-    props: ['isAuthenticated', 'signIn', 'signOut'],
+  import {mapGetters, mapActions} from 'vuex';
 
+  export default {
     data() {
       return {
         email: '',
         password: ''
       };
     },
+
+    computed: {
+      ...mapGetters('user', {
+        isAuthenticated: 'loggedIn',
+      }),
+    },
+
+    methods: {
+      ...mapActions('user', {
+        signIn: 'login',
+        signOut: 'logout'
+      }),
+    }
   };
 </script>
 

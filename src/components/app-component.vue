@@ -3,17 +3,10 @@
     <v-toolbar app>
       <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <login-menu
-          :signIn="(email, password) => login({email, password})"
-          :signOut="logout"
-          :isAuthenticated="loggedIn"
-      ></login-menu>
+      <login-menu></login-menu>
     </v-toolbar>
     <v-content>
-      <main-page
-          :isAuthenticated="loggedIn"
-          :questions="questions"
-      ></main-page>
+      <main-page></main-page>
     </v-content>
   </v-app>
 </template>
@@ -29,32 +22,6 @@
       'login-menu': LoginMenu,
       'main-page': MainPage
     },
-
-    data() {
-      return {
-      };
-    },
-
-    computed: {
-      ...mapGetters('user', {
-        loggedIn: 'loggedIn'
-      }),
-
-      ...mapGetters('question', {
-        questions: 'list'
-      })
-    },
-
-    methods: {
-      ...mapActions('user', {
-        login: 'login',
-        logout: 'logout'
-      }),
-
-      ...mapActions('question', {
-        findQuestions: 'list'
-      })
-    }
   };
 </script>
 
