@@ -1,10 +1,14 @@
 <template>
-  <div v-if="question">
-    <p>{{question.id}}</p>
-    <p>{{question.text}}</p>
-    <p>{{question.answer}}</p>
-    <p>{{question.author}}</p>
-  </div>
+  <v-layout row wrap justify-center>
+    <v-flex xs12 sm12 md10 lg6>
+      <div v-if="question">
+        <p>{{question.id}}</p>
+        <p>{{question.text}}</p>
+        <p>{{question.answer}}</p>
+        <p>{{question.author}}</p>
+      </div>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>

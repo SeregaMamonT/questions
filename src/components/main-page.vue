@@ -1,12 +1,10 @@
 <template>
-  <v-container fluid>
-    <v-layout row wrap justify-center>
-      <v-flex xs12 sm12 md10 lg6>
-        <add-question-form v-if="isAuthenticated"/>
-        <question-list :questions="questions"/>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-layout row wrap justify-center>
+    <v-flex xs12 sm12 md10 lg6>
+      <add-question-form v-if="isAuthenticated"/>
+      <question-list :questions="questions"/>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
