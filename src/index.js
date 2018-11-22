@@ -14,9 +14,7 @@ Vue.use(Vuetify);
 
 new Vue({
   el: '#vue-app',
-  components: {
-    'app-component': AppComponent,
-  },
+  render: h => h(AppComponent),
   store,
   router,
   i18n,
