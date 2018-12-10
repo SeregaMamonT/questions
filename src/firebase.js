@@ -10,4 +10,8 @@ firebase.initializeApp({
   apiKey: "AIzaSyAz-vQfU3Pub_lJg4O9zcvKUcGiLzF2MqY",
 });
 
+if (process.env.NODE_ENV === 'development') {
+  firebase.functions().useFunctionsEmulator('http://localhost:8081');
+}
+
 export default firebase.app();
