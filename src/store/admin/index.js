@@ -16,13 +16,20 @@ const mutations = {
 };
 
 const actions = {
-  loadUsers: function({ commit }) {
-    let helloWorld = firebase.functions().httpsCallable('helloWorld');
-    helloWorld({}).then(({ data }) => {
+  loadUsers({ commit }) {
+    let listUsers = firebase.functions().httpsCallable('listUsers');
+    listUsers().then(({ data }) => {
       console.log(data);
       commit(SET_USERS, data);
     });
   },
+
+  setRole(contex, {email, role}) {
+    let setRole = firebase.functions().httpsCallable('setRole');
+    setRole({email, role}).then(({ data }) => {
+      console.log(data);
+    });
+  }
 };
 
 export default {

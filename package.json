@@ -28,6 +28,7 @@
     "build": "webpack",
     "watch": "webpack -w",
     "dev": "webpack-dev-server",
+    "firebase": "firebase serve -p 8080",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
