@@ -1,6 +1,6 @@
-import MainPage from '../pages/main-page';
-import QuestionPage from '../pages/question-page';
-import AdminPage from '../pages/admin-page';
+import MainPage from 'app/pages/main-page';
+import QuestionPage from 'app/pages/question-page';
+import AdminPage from 'app/pages/admin-page';
 
 export default [
   { path: '/', component: MainPage },

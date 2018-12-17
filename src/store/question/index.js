@@ -1,4 +1,4 @@
-import db from '../../db';
+import db from 'app/db';
 import {PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION} from './mutations';
 
 const state = {

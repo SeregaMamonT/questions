@@ -44,6 +44,7 @@ const config = {
     mainFiles: ['index.js', 'index.vue'],
     alias: {
       vue: 'vue/dist/vue.js',
+      app: path.resolve(__dirname, 'src')
     },
   },
 

@@ -1,4 +1,4 @@
-import firebase from '../../firebase';
+import firebase from 'app/firebase';
 import {SET_USERS} from './mutations';
 
 const state = {
