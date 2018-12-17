@@ -42,6 +42,7 @@ const config = {
 
   resolve: {
     modules: [path.resolve(__dirname, 'app'), 'node_modules'],
+    extensions: ['.js', '.vue'],
     alias: {
       vue: 'vue/dist/vue.js',
     },

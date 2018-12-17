@@ -8,7 +8,7 @@ import router from './router';
 import i18n from './i18n';
 import './auth';
 
-import AppComponent from './components/app-component.vue';
+import AppComponent from './components/app-component';
 
 Vue.use(Vuetify);
 
