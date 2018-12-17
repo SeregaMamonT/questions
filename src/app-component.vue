@@ -16,7 +16,7 @@
 <script>
   import { mapActions, mapGetters } from 'vuex';
 
-  import LoginMenu from './login-menu';
+  import LoginMenu from './components/login-menu';
 
   export default {
     components: {

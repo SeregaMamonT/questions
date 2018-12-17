@@ -1,10 +1,8 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
-const props = loadProperties();
-
 const APP_DIR = path.resolve(__dirname, 'src');
-const OUTPUT_DIR = props.outputPath ? path.resolve(props.outputPath) : path.resolve(__dirname, 'public');
+const OUTPUT_DIR = path.resolve(__dirname, 'public');
 
 const config = {
   mode: 'development',
@@ -43,6 +41,7 @@ const config = {
   resolve: {
     modules: [path.resolve(__dirname, 'app'), 'node_modules'],
     extensions: ['.js', '.vue'],
+    mainFiles: ['index.js', 'index.vue'],
     alias: {
       vue: 'vue/dist/vue.js',
     },
@@ -60,15 +59,3 @@ const config = {
 };
 
 module.exports = config;
-
-// helpers
-
-function loadProperties() {
-  try {
-    return require('./webpack.properties.js');
-  }
-  catch (e) {
-    console.log('webpack.properties.js is not found - continue with default props');
-    return {};
-  }
-}

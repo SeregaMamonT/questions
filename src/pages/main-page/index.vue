@@ -10,8 +10,8 @@
 <script>
   import {mapGetters} from 'vuex';
 
-  import QuestionList from '../components/question-list';
-  import AddQuestionForm from '../components/add-question-form';
+  import QuestionList from './question-list';
+  import AddQuestionForm from './add-question-form';
 
   export default {
     name: 'main-page',
