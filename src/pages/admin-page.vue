@@ -2,7 +2,7 @@
   <v-layout row wrap justify-center>
     <v-flex xs12 sm12 md10 lg6>
       <h1>Admin page</h1>
-      <v-layout justify-start v-for="(user, index) in users" class="user">
+      <v-layout justify-start v-for="(user, index) in users" class="user" :key="index">
         <div>{{ user.email }}</div>
         <div>{{ user.customClaims }}</div>
         <v-btn @click="onSetRole(index)">Set Role</v-btn>

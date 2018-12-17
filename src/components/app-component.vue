@@ -17,12 +17,10 @@
   import { mapActions, mapGetters } from 'vuex';
 
   import LoginMenu from './login-menu.vue';
-  import MainPage from './main-page.vue';
 
   export default {
     components: {
       'login-menu': LoginMenu,
-      'main-page': MainPage
     },
   };
 </script>

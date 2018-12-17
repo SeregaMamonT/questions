@@ -1,6 +1,6 @@
-import MainPage from '../components/main-page.vue';
-import QuestionPage from '../components/question-page.vue';
-import AdminPage from '../components/admin-page.vue';
+import MainPage from '../pages/main-page.vue';
+import QuestionPage from '../pages/question-page.vue';
+import AdminPage from '../pages/admin-page.vue';
 
 export default [
   { path: '/', component: MainPage },
