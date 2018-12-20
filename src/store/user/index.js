@@ -10,6 +10,7 @@ const state = {
 const getters = {
   profile: state => state.profile,
   loggedIn: state => state.loggedIn,
+  isAdmin: state => state.isAdmin,
 };
 
 const mutations = {

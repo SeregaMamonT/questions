@@ -5,12 +5,13 @@
     </router-link>
     <v-spacer></v-spacer>
     <router-link v-if="isAdmin" to="/admin">{{$t('Admin')}}</router-link>
-    <router-link to="/change-password">{{$t('Change_password')}}</router-link>
+    <router-link v-if="isLoggedIn" to="/change-password">{{$t('Change_password')}}</router-link>
     <login-menu></login-menu>
   </v-toolbar>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex';
   import LoginMenu from './login-menu';
 
   export default {
@@ -21,9 +22,10 @@
     },
 
     computed: {
-      isAdmin() {
-        return this.$store.state.user.isAdmin;
-      },
+      ...mapGetters('user', {
+        isAdmin: 'isAdmin',
+        isLoggedIn: 'loggedIn',
+      }),
     },
   };
 </script>
