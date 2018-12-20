@@ -15,3 +15,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export default firebase.app();
+export {
+  firebase as Firebase
+};

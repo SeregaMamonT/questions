@@ -6,5 +6,9 @@ export default {
     author_s: 'Автор(ы)',
     Sign_in: 'Войти',
     Sign_out: 'Выйти',
+    Input_old_password: 'Введите старый пароль',
+    Input_new_password: 'Введите новый пароль',
+    Confirm_password: 'Подтвердите пароль',
+    Change_password: 'Обновить пароль',
   },
 };
