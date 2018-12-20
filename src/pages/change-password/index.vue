@@ -1,20 +1,14 @@
 <template>
   <v-layout row wrap justify-center>
     <v-flex xs12 sm9 md6 lg3>
-      <v-text-field
+      <password-field
           v-model="oldPassword"
-          :type="showOldPassword ? 'text' : 'password'"
-          :label="$t('Input_new_password')"
-          :append-icon="showOldPassword ? 'visibility_off' : 'visibility'"
-          v-on:click:append="showOldPassword = !showOldPassword"
-      ></v-text-field>
-      <v-text-field
+          label="Input_old_password"
+      />
+      <password-field
           v-model="newPassword"
-          :type="showPassword ? 'text' : 'password'"
-          :label="$t('Input_new_password')"
-          :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-          v-on:click:append="showPassword = !showPassword"
-      ></v-text-field>
+          label="Input_new_password"
+      />
       <v-btn @click="onChangePassword">{{$t('Change_password')}}</v-btn>
     </v-flex>
   </v-layout>
@@ -22,16 +16,19 @@
 
 <script>
   import {mapActions} from 'vuex';
+  import PasswordField from './password-field';
 
   export default {
     name: 'change-password',
+
+    components: {
+      'password-field': PasswordField,
+    },
 
     data() {
       return {
         oldPassword: null,
         newPassword: null,
-        showPassword: false,
-        showOldPassword: false,
       };
     },
 
