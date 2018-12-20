@@ -9,6 +9,7 @@ export default {
     Input_old_password: 'Введите старый пароль',
     Input_new_password: 'Введите новый пароль',
     Confirm_password: 'Подтвердите пароль',
-    Change_password: 'Обновить пароль',
+    Change_password: 'Сменить пароль',
+    Admin: 'Админка',
   },
 };

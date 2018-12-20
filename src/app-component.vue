@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <login-menu></login-menu>
-    </v-toolbar>
+    <app-toolbar></app-toolbar>
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -14,13 +10,11 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
-
-  import LoginMenu from './components/login-menu';
+  import AppToolbar from './components/app-toolbar';
 
   export default {
     components: {
-      'login-menu': LoginMenu,
+      'app-toolbar': AppToolbar,
     },
   };
 </script>
