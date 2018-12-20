@@ -4,6 +4,7 @@
       <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
     </router-link>
     <v-spacer></v-spacer>
+    <router-link v-if="isAdmin" to="/admin">{{$t('Admin')}}</router-link>
     <router-link to="/change-password">{{$t('Change_password')}}</router-link>
     <login-menu></login-menu>
   </v-toolbar>
@@ -17,6 +18,12 @@
 
     components: {
       'login-menu': LoginMenu,
+    },
+
+    computed: {
+      isAdmin() {
+        return this.$store.state.user.isAdmin;
+      },
     },
   };
 </script>

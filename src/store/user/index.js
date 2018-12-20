@@ -1,9 +1,10 @@
 import firebase, {Firebase} from 'app/firebase';
-import {SET_PROFILE, LOGOUT} from './mutations';
+import {SET_PROFILE, LOGOUT, SET_IS_ADMIN} from './mutations';
 
 const state = {
   profile: {},
   loggedIn: false,
+  isAdmin: false,
 };
 
 const getters = {
@@ -19,13 +20,26 @@ const mutations = {
     };
   },
 
+  [SET_IS_ADMIN](state, isAdmin) {
+    state.isAdmin = isAdmin;
+  },
+
   [LOGOUT](state) {
     state.loggedIn = false;
+    state.isAdmin = false;
     state.profile = {};
   },
 };
 
 const actions = {
+  onAuthStateChanged({ commit }, user) {
+    commit(SET_PROFILE, user);
+    firebase.auth().currentUser.getIdTokenResult(false)
+      .then(result => {
+        commit(SET_IS_ADMIN, result.claims.superadmin === true);
+      });
+  },
+
   login({ commit }, credentials) {
     firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
       .then(res => {
