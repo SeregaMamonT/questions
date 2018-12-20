@@ -12,13 +12,16 @@
 
 <script>
   export default {
-    props: ['data', 'index'],
+    props: {
+      data: { type: Object, isRequired: true },
+      index: { type: Number, isRequired: true },
+    },
 
     computed: {
       questionUrl() {
-        return `/#/question/${this.data.id}`
-      }
-    }
+        return `/#/question/${this.data.id}`;
+      },
+    },
   };
 </script>
 
