@@ -5,7 +5,7 @@
         <p>{{question.id}}</p>
         <p>{{question.text}}</p>
         <p>{{question.answer}}</p>
-        <p>{{question.author}}</p>
+        <p>{{question.authors}}</p>
       </div>
     </v-flex>
   </v-layout>

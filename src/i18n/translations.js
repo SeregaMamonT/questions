@@ -11,5 +11,6 @@ export default {
     Confirm_password: 'Подтвердите пароль',
     Change_password: 'Сменить пароль',
     Admin: 'Админка',
+    Question: 'Вопрос',
   },
 };

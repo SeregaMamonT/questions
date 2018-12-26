@@ -1,11 +1,20 @@
 <template>
   <div class="question-root">
-    <div class="question-index">#{{index}}</div>
     <div class="question">
-      <a :href="questionUrl">{{data.id}}</a>
-      <div>{{data.text}}</div>
+      <p>
+        <strong>
+          <a :href="questionUrl" class="question-index">{{`${$t('Question')} ${index}:`}}</a>
+        </strong>
+        {{data.text}}
+      </p>
       <div>{{$t('answer')}}: {{data.answer}}</div>
-      <div>{{$t('author_s')}}: {{data.author}}</div>
+      <v-chip
+          v-for="(author, index) in data.authors"
+          :key="index"
+          color="primary"
+          text-color="white"
+      >{{author}}
+      </v-chip>
     </div>
   </div>
 </template>
@@ -26,14 +35,18 @@
 </script>
 
 <style scoped>
-  .question-root:hover {
-    border: 1px dashed forestgreen;
-    border-radius: 5px;
+  .question-root {
+    padding: 0.4em;
+    border: 0.15em dashed transparent;
+    border-radius: 1em;
   }
 
-  .question-index {
-    width: 50px;
-    display: inline-block;
+  .question-root:hover {
+    border-color: dodgerblue;
+  }
+
+  .question-index:hover(:not) {
+    text-decoration: none;
   }
 
   .question {
