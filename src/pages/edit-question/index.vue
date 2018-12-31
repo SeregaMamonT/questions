@@ -21,7 +21,7 @@
 
     data() {
       return {
-        defaultQuestion: {
+        question: {
           text: null,
           answer: null,
           authors: [],
@@ -45,15 +45,14 @@
       ...mapGetters('question', {
         currentQuestion: 'current',
       }),
+    },
 
-      question() {
-        if (this.questionId) {
-          return this.currentQuestion || this.defaultQuestion;
-        }
-        return this.defaultQuestion;
+    watch: {
+      currentQuestion(value) {
+        value && Object.assign(this.question, value);
       },
     },
-  }
+  };
 </script>
 
 <style scoped>
