@@ -15,6 +15,7 @@
         multiple
         chips
     ></v-combobox>
+    <v-btn @click="onSave(value)">{{$t('Save')}}</v-btn>
   </v-form>
 </template>
 
@@ -23,6 +24,10 @@
     props: {
       value: {
         type: Object,
+      },
+      onSave: {
+        type: Function,
+        required: true,
       }
     },
 

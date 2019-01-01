@@ -47,6 +47,19 @@ const actions = {
       commit(SET_QUESTION, question);
     });
   },
+
+  addQuestion({commit}, question) {
+    console.log(question);
+    db.collection('questions').add(question)
+      .then(console.log)
+      .catch(console.log);
+  },
+
+  updateQuestion({commit}, {id, question}) {
+    db.collection('questions').doc(id).set(question)
+      .then(console.log)
+      .catch(console.log);
+  },
 };
 
 export default {

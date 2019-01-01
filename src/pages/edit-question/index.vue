@@ -3,6 +3,7 @@
     <v-flex xs12 sm12 md10 lg6>
       <edit-question-form
           v-model="question"
+          :on-save="onSave"
       ></edit-question-form>
     </v-flex>
   </v-layout>
@@ -38,7 +39,15 @@
     methods: {
       ...mapActions('question', {
         readCurrent: 'readCurrent',
+        addQuestion: 'addQuestion',
+        updateQuestion: 'updateQuestion',
       }),
+
+      onSave(question) {
+        this.questionId ?
+          this.updateQuestion({id: this.questionId, question}) :
+          this.addQuestion(question);
+      },
     },
 
     computed: {

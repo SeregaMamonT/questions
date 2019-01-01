@@ -12,5 +12,7 @@ export default {
     Change_password: 'Сменить пароль',
     Admin: 'Админка',
     Question: 'Вопрос',
+    Save: 'Сохранить',
+    Edit: 'Редактировать',
   },
 };

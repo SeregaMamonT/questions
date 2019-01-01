@@ -1,4 +1,4 @@
-export function listenQuery(query, callbacks) {
+export function listenQuery(query, callbacks = {}) {
   query.onSnapshot(snapshot => {
       snapshot.docChanges().forEach(change => {
         const document = {
@@ -8,11 +8,11 @@ export function listenQuery(query, callbacks) {
 
         switch (change.type) {
           case 'added':
-            return callbacks.onAdded(document);
+            return callbacks.onAdded && callbacks.onAdded(document);
           case 'modified':
-            return callbacks.onModified(document);
+            return callbacks.onModified && callbacks.onModified(document);
           case 'removed':
-            return callbacks.onRemoved(document);
+            return callbacks.onRemoved && callbacks.onRemoved(document);
         }
       });
     },
