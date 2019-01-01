@@ -1,5 +1,6 @@
 import db from 'app/db';
 import {PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION} from './mutations';
+import {listenQuery, readSingle} from 'app/firestore-helpers';
 
 const state = {
   list: [],
@@ -29,33 +30,23 @@ const actions = {
   list({commit}) {
     commit(RESET_QUESTION_LIST);
 
-    db.collection('questions').onSnapshot(snapshot => {
-        snapshot.docChanges().forEach(change => {
-          if (change.type === 'added') {
-            commit(PUSH_QUESTION, {
-              id: change.doc.id,
-              ...change.doc.data(),
-            });
-          }
-        });
+    listenQuery(db.collection('questions'), {
+      onAdded(question) {
+        commit(PUSH_QUESTION, question);
       },
-      error => {
+      onError(error) {
         commit(RESET_QUESTION_LIST);
         // TODO: log error in debug mode
         // debug('Failed fetch for questions:', error);
-      });
+      }
+    })
   },
 
   readCurrent({commit}, id) {
-    db.collection('questions').doc(id).get().then(question => {
-      if (question.exists) {
-        commit(SET_QUESTION, {
-          id: question.id,
-          ...question.data()
-        });
-      }
+    readSingle(db.collection('questions').doc(id)).then(question => {
+      commit(SET_QUESTION, question);
     });
-  }
+  },
 };
 
 export default {
