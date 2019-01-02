@@ -10,6 +10,8 @@
     ></v-text-field>
     <v-combobox
         v-model="value.authors"
+        item-text="name"
+        item-value="id"
         :items="allAuthors"
         :label="$t('author_s')"
         multiple
@@ -25,16 +27,14 @@
       value: {
         type: Object,
       },
+      allAuthors: {
+        type: Array,
+        required: true,
+      },
       onSave: {
         type: Function,
         required: true,
-      }
-    },
-
-    data() {
-      return {
-        allAuthors: [],
-      };
+      },
     },
   };
 </script>

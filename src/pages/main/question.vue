@@ -17,7 +17,7 @@
         :key="index"
         color="primary"
         text-color="white"
-    >{{author}}
+    >{{author.name}}
     </v-chip>
   </div>
 </template>

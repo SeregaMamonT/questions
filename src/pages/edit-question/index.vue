@@ -3,6 +3,7 @@
     <v-flex xs12 sm12 md10 lg6>
       <edit-question-form
           v-model="question"
+          :all-authors="authors"
           :on-save="onSave"
       ></edit-question-form>
     </v-flex>
@@ -53,6 +54,9 @@
     computed: {
       ...mapGetters('question', {
         currentQuestion: 'current',
+      }),
+      ...mapGetters('author', {
+        authors: 'list',
       }),
     },
 
