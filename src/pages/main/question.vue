@@ -13,20 +13,22 @@
     </p>
     <div>{{$t('answer')}}: {{data.answer}}</div>
     <v-chip
-        v-for="(author, index) in data.authors"
+        v-for="(authorId, index) in data.authors"
         :key="index"
         color="primary"
-        text-color="white"
-    >{{author.name}}
+        outline
+    >{{authorById(authorId).name}}
     </v-chip>
   </div>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex';
+
   export default {
     props: {
-      data: {type: Object, isRequired: true},
-      index: {type: Number, isRequired: true},
+      data: { type: Object, isRequired: true },
+      index: { type: Number, isRequired: true },
     },
 
     data() {
@@ -36,6 +38,10 @@
     },
 
     computed: {
+      ...mapGetters('author', {
+        authorById: 'authorById',
+      }),
+
       questionUrl() {
         return `/#/question/${this.data.id}`;
       },
@@ -59,7 +65,7 @@
     border-color: dodgerblue;
   }
 
-  .question-index:hover(:not) {
+  .question-index:not(:hover) {
     text-decoration: none;
   }
 

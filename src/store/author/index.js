@@ -8,6 +8,7 @@ const state = {
 
 const getters = {
   list: state => state.list,
+  authorById: state => id => state.list.find(author => author.id === id),
 };
 
 const mutations = {

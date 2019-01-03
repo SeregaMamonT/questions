@@ -8,7 +8,7 @@
         v-model="value.answer"
         :label="$t('answer')"
     ></v-text-field>
-    <v-combobox
+    <v-select
         v-model="value.authors"
         item-text="name"
         item-value="id"
@@ -16,7 +16,7 @@
         :label="$t('author_s')"
         multiple
         chips
-    ></v-combobox>
+    ></v-select>
     <v-btn @click="onSave(value)">{{$t('Save')}}</v-btn>
   </v-form>
 </template>
