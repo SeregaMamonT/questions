@@ -1,17 +1,18 @@
 import Vue from 'vue';
 
+import {Firebase} from 'app/firebase';
 import db from 'app/db';
 import {DELETE_QUESTION, PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION, UPDATE_QUESTION} from './mutations';
 import {listenQuery, readSingle} from 'app/firestore-helpers';
 
 const state = {
   list: [],
-  current: null
+  current: null,
 };
 
 const getters = {
   current: state => state.current,
-  list: state => state.list
+  list: state => state.list,
 };
 
 const mutations = {
@@ -35,11 +36,11 @@ const mutations = {
   [DELETE_QUESTION](state, questionId) {
     const index = state.list.findIndex(item => item.id === questionId);
     Vue.delete(state.list, index);
-  }
+  },
 };
 
 const actions = {
-  list({commit}) {
+  list({ commit }) {
     commit(RESET_QUESTION_LIST);
 
     listenQuery(db.collection('questions'), {
@@ -50,24 +51,25 @@ const actions = {
         commit(RESET_QUESTION_LIST);
         // TODO: log error in debug mode
         // debug('Failed fetch for questions:', error);
-      }
-    })
+      },
+    });
   },
 
-  readCurrent({commit}, id) {
+  readCurrent({ commit }, id) {
     readSingle(db.collection('questions').doc(id)).then(question => {
       commit(SET_QUESTION, question);
     });
   },
 
-  addQuestion({commit}, question) {
-    console.log(question);
+  addQuestion({ commit }, question) {
+    question.created = Firebase.firestore.FieldValue.serverTimestamp();
+
     db.collection('questions').add(question)
       .then(console.log)
       .catch(console.log);
   },
 
-  updateQuestion({commit}, {id, question}) {
+  updateQuestion({ commit }, { id, question }) {
     db.collection('questions').doc(id).set(question)
       .then(console.log)
       .catch(console.log);
@@ -79,5 +81,5 @@ export default {
   state,
   getters,
   mutations,
-  actions
+  actions,
 };
