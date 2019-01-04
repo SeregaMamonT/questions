@@ -1,34 +1,37 @@
 <template>
   <v-navigation-drawer
       fixed
-      :value="value"
+      v-model="modelValue"
       left
       app
   >
     <v-list dense>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-icon>home</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Home</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-icon>contact_mail</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Contact</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+      <url-list-tile
+          v-if="isAdmin"
+          to="/admin"
+          :text="$t('Admin')"
+          icon="home"
+      ></url-list-tile>
+      <url-list-tile
+          v-if="isLoggedIn"
+          to="/change-password"
+          :text="$t('Change_password')"
+          icon="contact_mail"
+      ></url-list-tile>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script>
+  import {mapGetters} from 'vuex';
+  import UrlListTile from './url-list-tile';
+
   export default {
     name: 'app-navigation-drawer',
+
+    components: {
+      'url-list-tile': UrlListTile,
+    },
 
     props: {
       value: Boolean,
@@ -40,7 +43,18 @@
       };
     },
 
+    computed: {
+      ...mapGetters('user', {
+        isAdmin: 'isAdmin',
+        isLoggedIn: 'loggedIn',
+      }),
+    },
+
     watch: {
+      value(val) {
+        this.modelValue = val;
+      },
+
       modelValue(val) {
         this.$emit('input', val);
       },

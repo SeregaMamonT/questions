@@ -5,8 +5,6 @@
       <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
     </router-link>
     <v-spacer></v-spacer>
-    <router-link v-if="isAdmin" to="/admin">{{$t('Admin')}}</router-link>
-    <router-link v-if="isLoggedIn" to="/change-password">{{$t('Change_password')}}</router-link>
     <login-menu></login-menu>
   </v-toolbar>
 </template>

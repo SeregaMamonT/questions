@@ -16,7 +16,15 @@ export function listenQuery(query, callbacks = {}) {
         }
       });
     },
-    error => callbacks.onError(error));
+    error => {
+      if (callbacks.onError) {
+        callbacks.onError(error);
+      }
+      else {
+        console.log('firestore-helpers#listenQuery', error);
+      }
+    }
+  );
 }
 
 export function readList(query) {
