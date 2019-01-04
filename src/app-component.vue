@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <app-toolbar></app-toolbar>
+    <app-navigation-drawer v-model="drawer"></app-navigation-drawer>
+    <app-toolbar :onIconClick="switchDrawer"></app-toolbar>
     <v-content>
       <v-container fluid>
         <router-view></router-view>
@@ -25,10 +26,24 @@
 
 <script>
   import AppToolbar from './components/app-toolbar';
+  import AppNavigationDrawer from './components/app-navigation-drawer';
 
   export default {
     components: {
       'app-toolbar': AppToolbar,
+      'app-navigation-drawer': AppNavigationDrawer,
+    },
+
+    data() {
+      return {
+        drawer: null,
+      };
+    },
+
+    methods: {
+      switchDrawer() {
+        this.drawer = !this.drawer;
+      },
     },
   };
 </script>

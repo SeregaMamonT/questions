@@ -1,5 +1,6 @@
 <template>
   <v-toolbar app>
+    <v-toolbar-side-icon @click.stop="onIconClick"></v-toolbar-side-icon>
     <router-link to="/" class="toolbar-title">
       <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
     </router-link>
@@ -19,6 +20,10 @@
 
     components: {
       'login-menu': LoginMenu,
+    },
+
+    props: {
+      onIconClick: { type: Function },
     },
 
     computed: {
