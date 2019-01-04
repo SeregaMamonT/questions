@@ -1,5 +1,7 @@
+import Vue from 'vue';
+
 import db from 'app/db';
-import {PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION} from './mutations';
+import {DELETE_QUESTION, PUSH_QUESTION, RESET_QUESTION_LIST, SET_QUESTION, UPDATE_QUESTION} from './mutations';
 import {listenQuery, readSingle} from 'app/firestore-helpers';
 
 const state = {
@@ -23,6 +25,16 @@ const mutations = {
 
   [SET_QUESTION](state, question) {
     state.current = question;
+  },
+
+  [UPDATE_QUESTION](state, updatedQuestion) {
+    const index = state.list.findIndex(item => item.id === updatedQuestion.id);
+    Vue.set(state.list, index, updatedQuestion);
+  },
+
+  [DELETE_QUESTION](state, questionId) {
+    const index = state.list.findIndex(item => item.id === questionId);
+    Vue.delete(state.list, index);
   }
 };
 
@@ -31,9 +43,9 @@ const actions = {
     commit(RESET_QUESTION_LIST);
 
     listenQuery(db.collection('questions'), {
-      onAdded(question) {
-        commit(PUSH_QUESTION, question);
-      },
+      onAdded: question => commit(PUSH_QUESTION, question),
+      onModified: question => commit(UPDATE_QUESTION, question),
+      onRemoved: question => commit(DELETE_QUESTION, question.id),
       onError(error) {
         commit(RESET_QUESTION_LIST);
         // TODO: log error in debug mode
