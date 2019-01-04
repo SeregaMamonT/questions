@@ -15,7 +15,7 @@
   import {mapActions, mapGetters} from 'vuex';
 
   export default {
-    name: "edit-question",
+    name: 'edit-question',
 
     components: {
       'edit-question-form': EditQuestionForm,
@@ -37,6 +37,15 @@
       this.questionId && this.readCurrent(this.questionId);
     },
 
+    computed: {
+      ...mapGetters('question', {
+        currentQuestion: 'current',
+      }),
+      ...mapGetters('author', {
+        authors: 'list',
+      }),
+    },
+
     methods: {
       ...mapActions('question', {
         readCurrent: 'readCurrent',
@@ -46,18 +55,10 @@
 
       onSave(question) {
         this.questionId ?
-          this.updateQuestion({id: this.questionId, question}) :
+          this.updateQuestion({ id: this.questionId, question }) :
           this.addQuestion(question);
+        this.$router.push({ path: '/' });
       },
-    },
-
-    computed: {
-      ...mapGetters('question', {
-        currentQuestion: 'current',
-      }),
-      ...mapGetters('author', {
-        authors: 'list',
-      }),
     },
 
     watch: {

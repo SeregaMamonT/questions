@@ -71,7 +71,8 @@
 
   .edit-link {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 0.7em;
+    right: 1.2em;
+    text-decoration: none;
   }
 </style>
