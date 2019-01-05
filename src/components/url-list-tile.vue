@@ -1,5 +1,5 @@
 <template>
-  <v-list-tile :to="to">
+  <v-list-tile :to="toInner" @click="onClickInner">
     <v-list-tile-action>
       <v-icon>{{icon}}</v-icon>
     </v-list-tile-action>
@@ -16,7 +16,6 @@
     props: {
       to: {
         type: String,
-        required: true,
       },
       text: {
         type: String,
@@ -25,6 +24,19 @@
       icon: {
         type: String,
         required: true,
+      },
+      onClick: {
+        type: Function,
+      },
+    },
+
+    computed: {
+      toInner() {
+        return this.to || '';
+      },
+
+      onClickInner() {
+        return this.onClick || (() => {});
       },
     },
   }

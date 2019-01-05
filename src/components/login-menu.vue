@@ -1,9 +1,7 @@
 <template>
   <v-toolbar-items>
-    <v-btn v-if="isAuthenticated" flat
-           @click="signOut"
-    >
-      {{`${profile.email} (${$t('Sign_out')})`}}
+    <v-btn v-if="isAuthenticated" flat>
+      {{profile.email}}
     </v-btn>
 
     <v-menu v-if="!isAuthenticated"
@@ -69,7 +67,6 @@
     methods: {
       ...mapActions('user', {
         signIn: 'login',
-        signOut: 'logout',
       }),
     },
   };

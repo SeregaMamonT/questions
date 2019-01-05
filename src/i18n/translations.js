@@ -14,5 +14,6 @@ export default {
     Question: 'Вопрос',
     Save: 'Сохранить',
     Edit: 'Редактировать',
+    Home: 'На главную',
   },
 };
