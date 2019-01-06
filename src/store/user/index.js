@@ -41,8 +41,8 @@ const actions = {
       });
   },
 
-  login({ commit }, credentials) {
-    firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+  login({ commit }, { email, password }) {
+    return firebase.auth().signInWithEmailAndPassword(email, password)
       .then(res => {
         console.log('signInWithEmailAndPassword', res);
         commit(SET_PROFILE, res.user);
@@ -52,7 +52,7 @@ const actions = {
   },
 
   logout() {
-    firebase.auth().signOut()
+    return firebase.auth().signOut()
       .then(res => {
         console.log('Logged out', res);
       })

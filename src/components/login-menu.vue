@@ -35,7 +35,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn flat
-                   @click="signIn({email, password})"
+                   @click="signInAndForward()"
             >
               {{$t('Sign_in')}}
             </v-btn>
@@ -68,6 +68,13 @@
       ...mapActions('user', {
         signIn: 'login',
       }),
+
+      signInAndForward() {
+        this.signIn({
+          email: this.email,
+          password: this.password
+        }).then(() => this.$router.push('/'));
+      },
     },
   };
 </script>

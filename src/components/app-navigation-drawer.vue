@@ -26,7 +26,7 @@
       ></url-list-tile>
       <url-list-tile
           v-if="isLoggedIn"
-          :on-click="signOut"
+          to="/logout"
           :text="$t('Sign_out')"
           icon="exit_to_app"
       ></url-list-tile>
