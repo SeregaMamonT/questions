@@ -7,7 +7,6 @@
   >
     <v-list dense>
       <url-list-tile
-          v-if="isAdmin"
           to="/"
           :text="$t('Home')"
           icon="home"
