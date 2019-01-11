@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Question from './question';
+  import Question from 'app/components/question';
 
   export default {
     components: {

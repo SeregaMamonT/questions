@@ -7,7 +7,9 @@
     <a v-if="isHovered" :href="editUrl" class="edit-link">{{$t('Edit')}}</a>
     <p>
       <strong>
-        <a :href="questionUrl" class="question-index">{{`${$t('Question')} ${index}:`}}</a>
+        <a :href="questionUrl" class="question-index">
+          {{ questionNumber }}
+        </a>
       </strong>
       {{data.text}}
     </p>
@@ -33,7 +35,7 @@
   export default {
     props: {
       data: { type: Object, isRequired: true },
-      index: { type: Number, isRequired: true },
+      index: { type: Number },
     },
 
     data() {
@@ -47,6 +49,11 @@
       ...mapGetters('author', {
         authorById: 'authorById',
       }),
+
+      questionNumber() {
+        const questionStr = this.$t('Question');
+        return this.index ? `${questionStr} ${this.index}:` : `${questionStr}:`;
+      },
 
       questionUrl() {
         return `/#/question/${this.data.id}`;
