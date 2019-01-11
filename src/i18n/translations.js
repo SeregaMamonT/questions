@@ -1,9 +1,9 @@
 export default {
   ru: {
-    questions: 'Вопросики',
-    answer: 'Ответ',
-    question_text: 'Текст вопроса',
-    author_s: 'Автор(ы)',
+    Questions: 'Вопросики',
+    Answer: 'Ответ',
+    Question_text: 'Текст вопроса',
+    Author_s: 'Автор(ы)',
     Sign_in: 'Войти',
     Sign_out: 'Выйти',
     Input_old_password: 'Введите старый пароль',
@@ -15,5 +15,7 @@ export default {
     Save: 'Сохранить',
     Edit: 'Редактировать',
     Home: 'На главную',
+    Commentary: 'Комментарий',
+    References: 'Источник(и)',
   },
 };

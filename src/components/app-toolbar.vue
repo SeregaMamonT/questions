@@ -2,7 +2,7 @@
   <v-toolbar app>
     <v-toolbar-side-icon @click.stop="onIconClick"></v-toolbar-side-icon>
     <router-link to="/" class="toolbar-title">
-      <v-toolbar-title>{{$t('questions')}}</v-toolbar-title>
+      <v-toolbar-title>{{$t('Questions')}}</v-toolbar-title>
     </router-link>
     <v-spacer></v-spacer>
     <login-menu></login-menu>

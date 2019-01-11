@@ -11,7 +11,7 @@
       </strong>
       {{data.text}}
     </p>
-    <div>{{$t('answer')}}: {{data.answer}}</div>
+    <div>{{$t('Answer')}}: {{data.answer}}</div>
     <v-chip
         v-for="(authorId, index) in data.authors"
         :key="index"

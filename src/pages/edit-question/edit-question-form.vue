@@ -2,18 +2,26 @@
   <v-form>
     <v-textarea
         v-model="value.text"
-        :label="$t('question_text')"
+        :label="$t('Question_text')"
     ></v-textarea>
     <v-text-field
         v-model="value.answer"
-        :label="$t('answer')"
+        :label="$t('Answer')"
     ></v-text-field>
+    <v-textarea
+        v-model="value.commentary"
+        :label="$t('Commentary')"
+    ></v-textarea>
+    <v-textarea
+        v-model="value.references"
+        :label="$t('References')"
+    ></v-textarea>
     <v-select
         v-model="value.authors"
         item-text="name"
         item-value="id"
         :items="allAuthors"
-        :label="$t('author_s')"
+        :label="$t('Author_s')"
         multiple
         chips
     ></v-select>
