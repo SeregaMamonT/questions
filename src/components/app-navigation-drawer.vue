@@ -7,6 +7,7 @@
   >
     <v-list dense>
       <url-list-tile
+          v-if="isLoggedIn"
           to="/"
           :text="$t('Home')"
           icon="home"
