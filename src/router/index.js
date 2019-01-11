@@ -14,8 +14,10 @@ router.beforeEach((to, from, next) => {
   if (isLogout(to)) {
     store.dispatch('user/logout').then(() => next('/login'));
   }
-  else if (requiresAuth(to) && !isLoggedIn()) {
-    next('/login');
+  else if (requiresAuth(to)) {
+    store.dispatch('waitUntilLoaded').then(() => {
+      isLoggedIn() ? next() : next('/login');
+    });
   }
   else {
     next();
