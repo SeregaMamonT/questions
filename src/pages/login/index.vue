@@ -1,12 +1,50 @@
 <template>
-  <div>
-    <h1>Login page mockup</h1>
-  </div>
+  <v-layout row wrap justify-center>
+    <v-flex xs12 sm9 md6 lg3>
+      <v-text-field
+          v-model="email"
+          label="Email"
+          browser-autocomplete="email"
+          required
+      ></v-text-field>
+      <v-text-field
+          v-model="password"
+          type="password"
+          label="Password"
+          required
+      ></v-text-field>
+      <v-btn @click="signInAndForward()">
+        {{$t('Sign_in')}}
+      </v-btn>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
+  import {mapActions} from 'vuex';
+
   export default {
-    name: "login-page"
+    name: "login-page",
+
+    data() {
+      return {
+        email: null,
+        password: null,
+      };
+    },
+
+    methods: {
+      ...mapActions('user', {
+        signIn: 'login',
+      }),
+
+      signInAndForward() {
+        this.signIn({
+          email: this.email,
+          password: this.password
+        }).then(() => this.$router.push('/'));
+      },
+    },
   }
 </script>
 
