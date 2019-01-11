@@ -11,14 +11,19 @@
       </strong>
       {{data.text}}
     </p>
-    <div>{{$t('Answer')}}: {{data.answer}}</div>
-    <v-chip
-        v-for="(authorId, index) in data.authors"
-        :key="index"
-        color="primary"
-        outline
-    >{{authorById(authorId).name}}
-    </v-chip>
+    <span @click="isAnswerVisible = !isAnswerVisible">...</span>
+    <div v-if="isAnswerVisible">
+      <div>{{$t('Answer')}}: {{data.answer}}</div>
+      <div>{{$t('Commentary')}}: {{data.commentary}}</div>
+      <div>{{$t('References')}}: {{data.references}}</div>
+      <v-chip
+          v-for="(authorId, index) in data.authors"
+          :key="index"
+          color="primary"
+          outline
+      >{{authorById(authorId).name}}
+      </v-chip>
+    </div>
   </div>
 </template>
 
@@ -34,6 +39,7 @@
     data() {
       return {
         isHovered: false,
+        isAnswerVisible: false,
       };
     },
 
