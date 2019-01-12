@@ -26,6 +26,7 @@
         chips
     ></v-select>
     <v-btn @click="onSave(value)">{{$t('Save')}}</v-btn>
+    <v-btn @click="onCancel">{{$t('Cancel')}}</v-btn>
   </v-form>
 </template>
 
@@ -42,6 +43,12 @@
       onSave: {
         type: Function,
         required: true,
+      },
+    },
+
+    methods: {
+      onCancel() {
+        this.$router.go(-1);
       },
     },
   };

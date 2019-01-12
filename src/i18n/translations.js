@@ -18,5 +18,6 @@ export default {
     Commentary: 'Комментарий',
     References: 'Источник(и)',
     Register: 'Зарегистрироваться',
+    Cancel: 'Отмена',
   },
 };
