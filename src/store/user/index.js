@@ -41,6 +41,12 @@ const actions = {
       });
   },
 
+  register({ commit }, { email, password }) {
+    return firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(console.log)
+      .catch(console.log);
+  },
+
   login({ commit }, { email, password }) {
     return firebase.auth().signInWithEmailAndPassword(email, password)
       .then(res => {

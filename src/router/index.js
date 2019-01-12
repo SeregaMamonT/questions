@@ -29,7 +29,7 @@ function isLogout(route) {
 }
 
 function requiresAuth(route) {
-  return !route.path.startsWith('/login');
+  return !route.path.startsWith('/login') && !route.path.startsWith('/register');
 }
 
 function isLoggedIn() {

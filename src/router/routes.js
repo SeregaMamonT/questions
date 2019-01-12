@@ -4,6 +4,7 @@ import AdminPage from 'app/pages/admin';
 import ChangePasswordPage from 'app/pages/change-password';
 import EditQuestionPage from 'app/pages/edit-question';
 import LoginPage from 'app/pages/login';
+import RegisterPage from 'app/pages/register';
 
 export default [
   { path: '/', component: MainPage },
@@ -13,4 +14,5 @@ export default [
   { path: '/add-question', component: EditQuestionPage },
   { path: '/edit-question/:id', component: EditQuestionPage },
   { path: '/login', component: LoginPage },
+  { path: '/register', component: RegisterPage },
 ];

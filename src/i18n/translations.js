@@ -17,5 +17,6 @@ export default {
     Home: 'На главную',
     Commentary: 'Комментарий',
     References: 'Источник(и)',
+    Register: 'Зарегистрироваться',
   },
 };

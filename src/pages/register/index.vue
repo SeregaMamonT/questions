@@ -13,12 +13,9 @@
           label="Password"
           required
       ></v-text-field>
-      <v-btn @click="signInAndForward()">
-        {{$t('Sign_in')}}
-      </v-btn>
-      <router-link to="/register">
+      <v-btn @click="registerAndForward()">
         {{$t('Register')}}
-      </router-link>
+      </v-btn>
     </v-flex>
   </v-layout>
 </template>
@@ -38,15 +35,15 @@
 
     methods: {
       ...mapActions('user', {
-        signIn: 'login',
+        register: 'register',
       }),
 
-      signInAndForward() {
+      registerAndForward() {
         this.doAction().then(() => this.$router.push('/'));
       },
 
       doAction() {
-        return this.signIn({
+        return this.register({
           email: this.email,
           password: this.password
         });
