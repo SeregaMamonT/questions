@@ -1,1 +1,1 @@
-* Add cancel button for question editing form
+* Add cancel button for question editing form, try #2
