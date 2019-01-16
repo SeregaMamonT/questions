@@ -13,7 +13,7 @@
       </strong>
       {{data.text}}
     </p>
-    <span @click="isAnswerVisible = !isAnswerVisible">...</span>
+    <a @click="isAnswerVisible = !isAnswerVisible">{{ isAnswerVisible ? $t('Hide_answer') : $t('Show_answer') }}</a>
     <div v-if="isAnswerVisible">
       <div>{{$t('Answer')}}: {{data.answer}}</div>
       <div>{{$t('Commentary')}}: {{data.commentary}}</div>

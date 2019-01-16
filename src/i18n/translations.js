@@ -19,5 +19,7 @@ export default {
     References: 'Источник(и)',
     Register: 'Зарегистрироваться',
     Cancel: 'Отмена',
+    Show_answer: 'Показать ответ',
+    Hide_answer: 'Скрыть ответ',
   },
 };
