@@ -30,7 +30,8 @@
     "prod": "webpack -p",
     "watch": "webpack -w",
     "firebase": "firebase serve --only functions -p 8081",
-    "test": "echo \"Not error: no test specified\" && exit 0"
+    "test1": "echo \"Not error: no test specified\" && exit 0",
+    "test2": "echo \"Not error: no test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
