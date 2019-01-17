@@ -55,7 +55,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run deploy
+      - run: npm run prod
+      - run: npx firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 workflows:
   version: 2
