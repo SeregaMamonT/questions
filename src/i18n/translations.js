@@ -21,5 +21,6 @@ export default {
     Cancel: 'Отмена',
     Show_answer: 'Показать ответ',
     Hide_answer: 'Скрыть ответ',
+    Backup: 'Создать бэкап',
   },
 };
