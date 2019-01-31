@@ -26,6 +26,12 @@
       ></url-list-tile>
       <url-list-tile
           v-if="isLoggedIn"
+          :on-click="onCreateDump"
+          :text="$t('Backup')"
+          icon="backup"
+      ></url-list-tile>
+      <url-list-tile
+          v-if="isLoggedIn"
           to="/logout"
           :text="$t('Sign_out')"
           icon="exit_to_app"
@@ -37,6 +43,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex';
   import UrlListTile from './url-list-tile';
+  import services from 'app/services';
 
   export default {
     name: 'app-navigation-drawer',
@@ -76,6 +83,10 @@
       ...mapActions('user', {
         signOut: 'logout',
       }),
+
+      onCreateDump() {
+        services.createDump();
+      }
     },
   };
 </script>
