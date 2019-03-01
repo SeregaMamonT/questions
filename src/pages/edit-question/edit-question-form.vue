@@ -1,5 +1,6 @@
 <template>
   <v-form>
+    <razdatka-field></razdatka-field>
     <v-textarea
         v-model="value.text"
         :label="$t('Question_text')"
@@ -31,7 +32,13 @@
 </template>
 
 <script>
+  import RazdatkaField from './razdatka-field';
+
   export default {
+    components: {
+      'razdatka-field': RazdatkaField,
+    },
+
     props: {
       value: {
         type: Object,
