@@ -1,6 +1,6 @@
 <template>
   <v-form>
-    <razdatka-field></razdatka-field>
+    <razdatka-field v-model="value.razdatka"></razdatka-field>
     <v-textarea
         v-model="value.text"
         :label="$t('Question_text')"

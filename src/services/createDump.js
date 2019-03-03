@@ -1,7 +1,9 @@
 import store from 'app/store';
+import {getTimestampName} from './fileNameService';
 
 function downloadDump() {
-  download(getDumpFileName(), JSON.stringify(getData()));
+  const fileName = getTimestampName('minutes', 'dump_', '.json', '_');
+  download(fileName, JSON.stringify(getData()));
 }
 
 function getData() {
@@ -9,18 +11,6 @@ function getData() {
     questions: store.getters['question/list'],
     authors: store.getters['author/list'],
   };
-}
-
-function getDumpFileName() {
-  const date = new Date();
-
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-
-  return `dump_${year}_${month}_${day}_${hours}_${minutes}.json`;
 }
 
 function download(filename, text) {

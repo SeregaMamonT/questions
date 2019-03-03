@@ -24,6 +24,7 @@
     data() {
       return {
         question: {
+          razdatka: {},
           text: null,
           answer: null,
           authors: [],
