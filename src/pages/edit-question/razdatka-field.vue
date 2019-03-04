@@ -1,11 +1,15 @@
 <template>
-  <input type="file" id="input" @change="uploadFile" />
+  <div>
+    <input type="file" id="input" @change="uploadFile"/>
+    <img v-if="model.imageSrc" :src="imageSrc"/>
+  </div>
 </template>
 
 <script>
   import firebase from 'app/firebase';
   import {getTimestampName, getNameExtension} from 'app/services/fileNameService';
-  import { Firebase } from 'app/firebase';
+  import {Firebase} from 'app/firebase';
+
   const { TaskState } = Firebase.storage;
 
   export default {
@@ -21,9 +25,10 @@
     data() {
       return {
         model: {
-          imageSrc: this.value.imageSrc,
-          text: this.value.text,
+          imageSrc: null,
+          text: null,
         },
+        imageSrc: null,
       };
     },
 
@@ -36,11 +41,10 @@
             this.saveImageToStorage(e.target.result, file.name);
           };
           reader.readAsArrayBuffer(file);
-          // reader.onload = e => this.$emit("load", e.target.result);
         }
       },
 
-      saveImageToStorage: function (image, originalName) {
+      saveImageToStorage(image, originalName) {
         const handlers = {
           onStateChanged(snapshot) {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -54,12 +58,12 @@
                 break;
             }
           },
-          onComplete(uploadTask) {
-            uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-              console.log('File available at', downloadURL);
-            });
+          onComplete: uploadTask => {
+            console.log('File available at', uploadTask.snapshot.ref.fullPath);
+            this.model.imageSrc = uploadTask.snapshot.ref.fullPath;
+            this.$emit('input', this.model);
           },
-          onError: error => {}
+          onError: error => console.log(error),
         };
 
         const imageName = this.generateImageName(originalName);
@@ -67,7 +71,7 @@
       },
 
       saveToStorage(file, fileName, eventHandlers) {
-        const storageRef = firebase.storage().ref();
+        const storageRef = firebase.storage().ref('images');
         const fileRef = storageRef.child(fileName);
         const uploadTask = fileRef.put(file);
 
@@ -78,8 +82,20 @@
       },
 
       generateImageName(originalName) {
-        const {name, extension} = getNameExtension(originalName);
+        const { name, extension } = getNameExtension(originalName);
         return getTimestampName('seconds', `${name}_`, `.${extension}`, '_');
+      },
+    },
+
+    watch: {
+      value(newValue) {
+        Object.assign(this.model, newValue);
+      },
+
+      'model.imageSrc'(newValue) {
+        firebase.storage().ref(newValue).getDownloadURL()
+          .then(downloadUrl => this.imageSrc = downloadUrl)
+          .catch(console.log);
       },
     },
   };
