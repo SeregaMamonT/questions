@@ -22,5 +22,10 @@ export default {
     Show_answer: 'Показать ответ',
     Hide_answer: 'Скрыть ответ',
     Backup: 'Создать бэкап',
+    Text: 'Текст',
+    Image: 'Картинка',
+    Razdatka_text: 'Текст раздатки',
+    Add_razdatka: 'Добавить раздатку',
+    Remove_razdatka: 'Убрать раздатку',
   },
 };

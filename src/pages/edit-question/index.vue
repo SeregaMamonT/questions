@@ -24,10 +24,7 @@
     data() {
       return {
         question: {
-          razdatka: {
-            imageSrc: null,
-            text: null,
-          },
+          razdatka: null,
           text: null,
           answer: null,
           authors: [],

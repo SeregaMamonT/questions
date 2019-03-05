@@ -1,8 +1,25 @@
 <template>
-  <div>
-    <input type="file" id="input" @change="uploadFile"/>
-    <img v-if="model.imageSrc" :src="imageSrc"/>
-  </div>
+  <v-container fluid :style="{
+      border: '0.1em dashed black',
+      borderRadius: '1em',
+    }">
+    <v-radio-group v-model="model.mode" row>
+      <v-radio :label="$t('Text')" value="text"></v-radio>
+      <v-radio :label="$t('Image')" value="image"></v-radio>
+    </v-radio-group>
+
+    <div v-if="model.mode === 'image'">
+      <input type="file" id="input" @change="uploadFile"/>
+      <img v-if="model.imageSrc" :src="imageSrc"/>
+    </div>
+
+    <div v-if="model.mode === 'text'">
+      <v-textarea
+          v-model="model.text"
+          :label="$t('Razdatka_text')"
+      ></v-textarea>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -27,12 +44,22 @@
         model: {
           imageSrc: null,
           text: null,
+          mode: 'text',
         },
         imageSrc: null,
       };
     },
 
+    mounted() {
+      this.initFromProps(this.value);
+    },
+
     methods: {
+      initFromProps(newProps) {
+        Object.assign(this.model, newProps);
+        this.model.mode === 'image' && this.updateImageUrl(this.model.imageSrc);
+      },
+
       uploadFile(event) {
         const file = event.target.files.length ? event.target.files[0] : null;
         if (file) {
@@ -61,7 +88,6 @@
           onComplete: uploadTask => {
             console.log('File available at', uploadTask.snapshot.ref.fullPath);
             this.model.imageSrc = uploadTask.snapshot.ref.fullPath;
-            this.$emit('input', this.model);
           },
           onError: error => console.log(error),
         };
@@ -85,17 +111,33 @@
         const { name, extension } = getNameExtension(originalName);
         return getTimestampName('seconds', `${name}_`, `.${extension}`, '_');
       },
+
+      updateImageUrl(imageName) {
+        imageName && firebase.storage().ref(imageName).getDownloadURL()
+          .then(downloadUrl => this.imageSrc = downloadUrl)
+          .catch(console.log);
+      },
     },
 
     watch: {
-      value(newValue) {
-        Object.assign(this.model, newValue);
+      value: {
+        handler(newValue) {
+          this.initFromProps(newValue);
+        },
       },
 
-      'model.imageSrc'(newValue) {
-        firebase.storage().ref(newValue).getDownloadURL()
-          .then(downloadUrl => this.imageSrc = downloadUrl)
-          .catch(console.log);
+      model: {
+        deep: true,
+        handler() {
+          this.$emit('input', Object.assign({}, this.model));
+        },
+      },
+
+      'model.imageSrc': {
+        immediate: true,
+        handler(newValue) {
+          this.updateImageUrl(newValue);
+        },
       },
     },
   };

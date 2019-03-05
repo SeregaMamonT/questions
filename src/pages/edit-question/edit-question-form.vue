@@ -1,6 +1,11 @@
 <template>
   <v-form>
-    <razdatka-field v-model="value.razdatka"></razdatka-field>
+    <div v-if="value.razdatka">
+      <a class="edit-link" @click="onSwitchRazdatka">{{$t('Remove_razdatka')}}</a>
+      <razdatka-field v-if="value.razdatka" v-model="value.razdatka"></razdatka-field>
+    </div>
+    <a v-if="!value.razdatka" class="edit-link" @click="onSwitchRazdatka">{{$t('Add_razdatka')}}</a>
+
     <v-textarea
         v-model="value.text"
         :label="$t('Question_text')"
@@ -56,6 +61,14 @@
     methods: {
       onCancel() {
         this.$router.go(-1);
+      },
+
+      onSwitchRazdatka() {
+        this.value.razdatka = this.value.razdatka ? null : {
+          imageSrc: null,
+          text: null,
+          mode: 'text',
+        };
       },
     },
   };
