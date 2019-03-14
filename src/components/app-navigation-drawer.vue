@@ -43,7 +43,7 @@
 <script>
   import {mapGetters, mapActions} from 'vuex';
   import UrlListTile from './url-list-tile';
-  import services from 'app/services';
+  import dumpService from 'app/services/dumpService';
 
   export default {
     name: 'app-navigation-drawer',
@@ -85,8 +85,8 @@
       }),
 
       onCreateDump() {
-        services.createDump();
-      }
+        dumpService.createDump();
+      },
     },
   };
 </script>
