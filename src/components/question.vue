@@ -1,11 +1,25 @@
 <template>
   <div
-      class="question-root"
+      class="root"
       @mouseover="isHovered = true"
       @mouseleave="isHovered = false"
   >
     <a v-if="isHovered" :href="editUrl" class="edit-link">{{$t('Edit')}}</a>
-    <p>
+
+    <div v-if="data.razdatka">
+      <p>
+        <strong>
+          <a :href="questionUrl" class="question-index">
+            {{ questionNumber }}
+          </a>
+        </strong>
+      </p>
+      <img v-if="data.razdatka.mode === 'image'" class="razdatka-image" :src="imageSrc" />
+      <p v-if="data.razdatka.mode === 'text'" class="razdatka-text">{{data.razdatka.text}}</p>
+      <p>{{data.text}}</p>
+    </div>
+
+    <p v-if="!data.razdatka">
       <strong>
         <a :href="questionUrl" class="question-index">
           {{ questionNumber }}
@@ -13,6 +27,7 @@
       </strong>
       {{data.text}}
     </p>
+
     <a @click="isAnswerVisible = !isAnswerVisible">{{ isAnswerVisible ? $t('Hide_answer') : $t('Show_answer') }}</a>
     <div v-if="isAnswerVisible">
       <div>{{$t('Answer')}}: {{data.answer}}</div>
@@ -31,6 +46,7 @@
 
 <script>
   import {mapGetters} from 'vuex';
+  import fileService from 'app/services/fileService';
 
   export default {
     props: {
@@ -42,6 +58,7 @@
       return {
         isHovered: false,
         isAnswerVisible: false,
+        imageSrc: null,
       };
     },
 
@@ -63,18 +80,28 @@
         return `/#/edit-question/${this.data.id}`;
       },
     },
+
+    watch: {
+      'data.razdatka.imageSrc': {
+        immediate: true,
+        handler(newVal) {
+          fileService.getDownloadUrl(newVal)
+            .then(imageSrc => this.imageSrc = imageSrc);
+        },
+      },
+    },
   };
 </script>
 
 <style scoped>
-  .question-root {
+  .root {
     padding: 0.4em;
     border: 0.15em dashed transparent;
     border-radius: 1em;
     position: relative;
   }
 
-  .question-root:hover {
+  .root:hover {
     border-color: dodgerblue;
   }
 
@@ -87,5 +114,15 @@
     bottom: 0.7em;
     right: 1.2em;
     text-decoration: none;
+  }
+
+  .razdatka-image {
+    max-width: 100%;
+  }
+
+  .razdatka-text {
+    border: 1px solid black;
+    background: lightgray;
+    overflow-wrap: break-word;
   }
 </style>
