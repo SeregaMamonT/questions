@@ -1,8 +1,5 @@
 <template>
-  <v-container fluid :style="{
-      border: '0.1em dashed black',
-      borderRadius: '1em',
-    }">
+  <v-container fluid class="root">
     <v-radio-group v-model="model.mode" row>
       <v-radio :label="$t('Text')" value="text"></v-radio>
       <v-radio :label="$t('Image')" value="image"></v-radio>
@@ -23,8 +20,8 @@
 </template>
 
 <script>
-  import firebase from 'app/firebase';
   import {getTimestampName, getNameExtension} from 'app/services/fileNameService';
+  import fileService from 'app/services/fileService';
   import {Firebase} from 'app/firebase';
 
   const { TaskState } = Firebase.storage;
@@ -61,14 +58,9 @@
       },
 
       uploadFile(event) {
-        const file = event.target.files.length ? event.target.files[0] : null;
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = e => {
-            this.saveImageToStorage(e.target.result, file.name);
-          };
-          reader.readAsArrayBuffer(file);
-        }
+        fileService.uploadFile(event).then(res => {
+          res && this.saveImageToStorage(res.file, res.fileName);
+        });
       },
 
       saveImageToStorage(image, originalName) {
@@ -93,18 +85,7 @@
         };
 
         const imageName = this.generateImageName(originalName);
-        this.saveToStorage(image, imageName, handlers);
-      },
-
-      saveToStorage(file, fileName, eventHandlers) {
-        const storageRef = firebase.storage().ref('images');
-        const fileRef = storageRef.child(fileName);
-        const uploadTask = fileRef.put(file);
-
-        uploadTask.on('state_changed',
-          eventHandlers.onStateChanged,
-          eventHandlers.onError,
-          () => eventHandlers.onComplete(uploadTask));
+        fileService.saveToStorage(image, imageName, handlers);
       },
 
       generateImageName(originalName) {
@@ -113,7 +94,7 @@
       },
 
       updateImageUrl(imageName) {
-        imageName && firebase.storage().ref(imageName).getDownloadURL()
+        fileService.getDownloadUrl(imageName)
           .then(downloadUrl => this.imageSrc = downloadUrl)
           .catch(console.log);
       },
@@ -144,6 +125,11 @@
 </script>
 
 <style scoped>
+  .root {
+    border: 0.1em dashed black;
+    border-radius: 1em;
+  }
+
   .razdatka-image img {
     max-width: 100%;
   }
