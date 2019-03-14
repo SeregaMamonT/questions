@@ -8,7 +8,7 @@
       <v-radio :label="$t('Image')" value="image"></v-radio>
     </v-radio-group>
 
-    <div v-if="model.mode === 'image'">
+    <div v-if="model.mode === 'image'" class="razdatka-image">
       <input type="file" id="input" @change="uploadFile"/>
       <img v-if="model.imageSrc" :src="imageSrc"/>
     </div>
@@ -144,5 +144,11 @@
 </script>
 
 <style scoped>
+  .razdatka-image img {
+    max-width: 100%;
+  }
 
+  .razdatka-image input {
+    display: block;
+  }
 </style>
