@@ -37,6 +37,7 @@ jobs:
       - run:
           name: bump version
           command: |
+              git diff
               npm run update-patch
               git push origin dev
               git push --tags
