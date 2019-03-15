@@ -30,7 +30,7 @@
     "prod": "webpack -p && npm run update-minor",
     "watch": "webpack -w",
     "firebase": "firebase serve --only functions -p 8081",
-    "test": "echo \"Not error: no test specified\" && exit 0 && npm run update-patch",
+    "test": "echo \"Not error: no test specified\" && npm run update-patch && exit 0",
     "deploy": "echo \"Deployment stub: Success\" && exit 0",
     "update-patch": "npm version patch",
     "update-minor": "npm version minor"
