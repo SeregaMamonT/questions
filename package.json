@@ -27,11 +27,12 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "prod": "webpack -p",
+    "prod": "webpack -p && npm run update-version",
     "watch": "webpack -w",
     "firebase": "firebase serve --only functions -p 8081",
     "test": "echo \"Not error: no test specified\" && exit 0",
-    "deploy": "echo \"Deployment stub: Success\" && exit 0"
+    "deploy": "echo \"Deployment stub: Success\" && exit 0",
+    "update-version": "npm version patch"
   },
   "repository": {
     "type": "git",
