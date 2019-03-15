@@ -37,7 +37,8 @@ jobs:
       - run:
           name: bump version
           command: |
-              git diff
+              git config user.email "$GIT_USER_EMAIL"
+              git config user.name "$GIT_USER_NAME"
               npm run update-patch
               git push origin dev
               git push --tags
