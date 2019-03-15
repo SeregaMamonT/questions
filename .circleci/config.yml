@@ -34,6 +34,13 @@ jobs:
 
       - run: npm run test
 
+      - run:
+          name: bump version
+          command: |
+              npm run update-patch
+              git push origin dev
+              git push --tags
+
   deploy:
     docker:
       - image: circleci/node:11.4
