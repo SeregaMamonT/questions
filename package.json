@@ -1,6 +1,6 @@
 {
   "name": "questions",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -27,12 +27,13 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "prod": "webpack -p && npm run update-version",
+    "prod": "webpack -p && npm run update-minor",
     "watch": "webpack -w",
     "firebase": "firebase serve --only functions -p 8081",
-    "test": "echo \"Not error: no test specified\" && exit 0",
+    "test": "echo \"Not error: no test specified\" && exit 0 && npm run update-patch",
     "deploy": "echo \"Deployment stub: Success\" && exit 0",
-    "update-version": "npm version patch"
+    "update-patch": "npm version patch",
+    "update-minor": "npm version minor"
   },
   "repository": {
     "type": "git",
