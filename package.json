@@ -35,7 +35,7 @@
     "watch": "webpack -w",
     "firebase": "firebase serve --only functions -p 8081",
     "test": "echo \"Not error: no test specified\" && exit 0",
-    "deploy": "echo \"Deployment stub: Success\" && exit 0",
+    "deploy": "firebase deploy --only hosting --token=$FIREBASE_DEPLOY_TOKEN",
     "update-patch": "npm version patch",
     "update-minor": "npm version minor"
   },

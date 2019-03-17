@@ -25,21 +25,21 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run test
+      - run: yarn run test
 
       - run:
           name: bump version
           command: |
               git config user.email "$GIT_USER_EMAIL"
               git config user.name "$GIT_USER_NAME"
-              npm run update-patch
+              yarn run update-patch
               git push origin dev
               git push --tags
 
@@ -57,15 +57,15 @@ jobs:
           - v1-dependencies-{{ checksum "package.json" }}
           - v1-dependencies-
 
-      - run: npm install
+      - run: yarn install
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: npm run prod
-      - run: npx firebase deploy --only hosting --token=$FIREBASE_DEPLOY_TOKEN
+      - run: yarn run prod
+      - run: yarn run deploy
 
 workflows:
   version: 2
