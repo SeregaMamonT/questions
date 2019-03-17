@@ -22,6 +22,7 @@
 <script>
   import {getTimestampName, getNameExtension} from 'app/services/fileNameService';
   import fileService from 'app/services/fileService';
+  import imageService from 'app/services/imageService';
   import {Firebase} from 'app/firebase';
 
   const { TaskState } = Firebase.storage;
@@ -59,7 +60,12 @@
 
       uploadFile(event) {
         fileService.uploadFile(event).then(res => {
-          res && this.saveImageToStorage(res.file, res.fileName);
+          console.log(res.file);
+          console.log(res.file.byteLength);
+          res && imageService.resizeImage(res.file).then(resizedImage => {
+            console.log(resizedImage);
+            this.saveImageToStorage(resizedImage, res.fileName);
+          });
         });
       },
 

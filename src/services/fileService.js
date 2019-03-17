@@ -14,7 +14,12 @@ function saveToStorage(file, fileName, eventHandlers) {
   uploadTask.on('state_changed',
     eventHandlers.onStateChanged,
     eventHandlers.onError,
-    () => eventHandlers.onComplete(uploadTask));
+    () => {
+      fileRef.updateMetadata({
+        cacheControl: 'max-age=31536000',
+      });
+      eventHandlers.onComplete(uploadTask);
+    });
 }
 
 function uploadFile(event) {
