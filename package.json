@@ -36,7 +36,7 @@
     "firebase": "firebase serve --only functions -p 8081",
     "test": "echo \"Not error: no test specified\" && exit 0",
     "deploy": "firebase deploy --only hosting --token=$FIREBASE_DEPLOY_TOKEN",
-    "update-patch": "npm version patch",
+    "update-patch": "npm version patch -m \"Autoincrementing version to %s [ci skip]\"",
     "update-minor": "npm version minor"
   },
   "repository": {
