@@ -12,7 +12,8 @@
 
 <script>
   import EditQuestionForm from './edit-question-form';
-  import {mapActions, mapGetters} from 'vuex';
+  import {mapGetters} from 'vuex';
+  import questionService from 'app/services/questionService';
 
   export default {
     name: 'edit-question',
@@ -35,7 +36,7 @@
 
     created() {
       this.questionId = this.$route.params.id;
-      this.questionId && this.readCurrent(this.questionId);
+      this.questionId && questionService.readCurrent(this.questionId);
     },
 
     computed: {
@@ -48,16 +49,10 @@
     },
 
     methods: {
-      ...mapActions('question', {
-        readCurrent: 'readCurrent',
-        addQuestion: 'addQuestion',
-        updateQuestion: 'updateQuestion',
-      }),
-
       onSave(question) {
         this.questionId ?
-          this.updateQuestion({ id: this.questionId, question }) :
-          this.addQuestion(question);
+          questionService.update(this.questionId, question) :
+          questionService.add(question);
         this.$router.push({ path: '/' });
       },
     },

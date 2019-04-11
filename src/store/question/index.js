@@ -13,6 +13,7 @@ const state = {
 const getters = {
   current: state => state.current,
   list: state => state.list,
+  questionById: state => id => state.list.find(question => question.id === id),
 };
 
 const mutations = {

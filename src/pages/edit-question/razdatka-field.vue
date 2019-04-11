@@ -83,15 +83,15 @@
                 break;
             }
           },
-          onComplete: uploadTask => {
-            console.log('File available at', uploadTask.snapshot.ref.fullPath);
-            this.model.imageSrc = uploadTask.snapshot.ref.fullPath;
+          onComplete: storageUnit => {
+            console.log('File available at', storageUnit);
+            this.model.imageSrc = storageUnit;
           },
           onError: error => console.log(error),
         };
 
         const imageName = this.generateImageName(originalName);
-        fileService.saveToStorage(image, imageName, handlers);
+        fileService.saveTempImage(image, imageName, handlers);
       },
 
       generateImageName(originalName) {
