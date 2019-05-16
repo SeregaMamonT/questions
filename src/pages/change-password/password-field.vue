@@ -1,20 +1,26 @@
 <template>
   <v-text-field
-      v-model="modelValue"
-      :type="showPassword ? 'text' : 'password'"
-      :label="$t(label)"
-      :append-icon="showPassword ? 'visibility_off' : 'visibility'"
-      v-on:click:append="showPassword = !showPassword"
-  ></v-text-field>
+    v-model="modelValue"
+    :type="showPassword ? 'text' : 'password'"
+    :label="$t(label)"
+    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+    @click:append="showPassword = !showPassword"
+  />
 </template>
 
 <script>
   export default {
-    name: "password-field",
+    name: 'PasswordField',
 
     props: {
-      value: String,
-      label: String,
+      value: {
+        type: String,
+        default: '',
+      },
+      label: {
+        type: String,
+        default: '',
+      },
     },
 
     data() {

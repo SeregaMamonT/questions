@@ -1,21 +1,22 @@
 <template>
   <v-list-tile :to="toInner" @click="onClickInner">
     <v-list-tile-action>
-      <v-icon>{{icon}}</v-icon>
+      <v-icon>{{ icon }}</v-icon>
     </v-list-tile-action>
     <v-list-tile-content>
-      <v-list-tile-title>{{text}}</v-list-tile-title>
+      <v-list-tile-title>{{ text }}</v-list-tile-title>
     </v-list-tile-content>
   </v-list-tile>
 </template>
 
 <script>
   export default {
-    name: "url-list-tile",
+    name: 'UrlListTile',
 
     props: {
       to: {
         type: String,
+        default: '',
       },
       text: {
         type: String,
@@ -27,12 +28,13 @@
       },
       onClick: {
         type: Function,
+        default: () => {},
       },
     },
 
     computed: {
       toInner() {
-        return this.to || '';
+        return this.to;
       },
 
       onClickInner() {

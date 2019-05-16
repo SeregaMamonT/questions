@@ -1,20 +1,20 @@
 <template>
   <v-container fluid class="root">
     <v-radio-group v-model="model.mode" row>
-      <v-radio :label="$t('Text')" value="text"></v-radio>
-      <v-radio :label="$t('Image')" value="image"></v-radio>
+      <v-radio :label="$t('Text')" value="text" />
+      <v-radio :label="$t('Image')" value="image" />
     </v-radio-group>
 
     <div v-if="model.mode === 'image'" class="razdatka-image">
-      <input type="file" id="input" @change="uploadFile"/>
-      <img v-if="model.imageSrc" :src="imageSrc"/>
+      <input id="input" type="file" @change="uploadFile">
+      <img v-if="model.imageSrc" :src="imageSrc">
     </div>
 
     <div v-if="model.mode === 'text'">
       <v-textarea
-          v-model="model.text"
-          :label="$t('Razdatka_text')"
-      ></v-textarea>
+        v-model="model.text"
+        :label="$t('Razdatka_text')"
+      />
     </div>
   </v-container>
 </template>
@@ -28,7 +28,7 @@
   const { TaskState } = Firebase.storage;
 
   export default {
-    name: 'razdatka-field',
+    name: 'RazdatkaField',
 
     props: {
       value: {
@@ -46,6 +46,28 @@
         },
         imageSrc: null,
       };
+    },
+
+    watch: {
+      value: {
+        handler(newValue) {
+          this.initFromProps(newValue);
+        },
+      },
+
+      model: {
+        deep: true,
+        handler() {
+          this.$emit('input', Object.assign({}, this.model));
+        },
+      },
+
+      'model.imageSrc': {
+        immediate: true,
+        handler(newValue) {
+          this.updateImageUrl(newValue);
+        },
+      },
     },
 
     mounted() {
@@ -103,28 +125,6 @@
         fileService.getDownloadUrl(imageName)
           .then(downloadUrl => this.imageSrc = downloadUrl)
           .catch(console.log);
-      },
-    },
-
-    watch: {
-      value: {
-        handler(newValue) {
-          this.initFromProps(newValue);
-        },
-      },
-
-      model: {
-        deep: true,
-        handler() {
-          this.$emit('input', Object.assign({}, this.model));
-        },
-      },
-
-      'model.imageSrc': {
-        immediate: true,
-        handler(newValue) {
-          this.updateImageUrl(newValue);
-        },
       },
     },
   };

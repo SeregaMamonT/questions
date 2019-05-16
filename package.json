@@ -21,6 +21,8 @@
     "@babel/preset-env": "^7.3.4",
     "babel-loader": "^8.0.5",
     "css-loader": "^1.0.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.2.2",
     "firebase-tools": "^6.4.0",
     "vue-loader": "^15.2.6",
     "vue-style-loader": "^4.1.1",
@@ -37,7 +39,8 @@
     "test": "echo \"Not error: no test specified\" && exit 0",
     "deploy": "firebase deploy --only hosting --token=$FIREBASE_DEPLOY_TOKEN",
     "update-patch": "npm version patch -m \"Autoincrementing version to %s [ci skip]\"",
-    "update-minor": "npm version minor"
+    "update-minor": "npm version minor",
+    "lint": "eslint --ext .js,.vue src"
   },
   "repository": {
     "type": "git",

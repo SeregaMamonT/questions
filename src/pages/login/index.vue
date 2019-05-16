@@ -2,22 +2,22 @@
   <v-layout row wrap justify-center>
     <v-flex xs12 sm9 md6 lg3>
       <v-text-field
-          v-model="email"
-          label="Email"
-          browser-autocomplete="email"
-          required
-      ></v-text-field>
+        v-model="email"
+        label="Email"
+        browser-autocomplete="email"
+        required
+      />
       <v-text-field
-          v-model="password"
-          type="password"
-          label="Password"
-          required
-      ></v-text-field>
+        v-model="password"
+        type="password"
+        label="Password"
+        required
+      />
       <v-btn @click="signInAndForward()">
-        {{$t('Sign_in')}}
+        {{ $t('Sign_in') }}
       </v-btn>
       <router-link to="/register">
-        {{$t('Register')}}
+        {{ $t('Register') }}
       </router-link>
     </v-flex>
   </v-layout>
@@ -27,7 +27,7 @@
   import {mapActions} from 'vuex';
 
   export default {
-    name: "login-page",
+    name: 'LoginPage',
 
     data() {
       return {

@@ -1,10 +1,10 @@
 <template>
   <div
-      class="root"
-      @mouseover="isHovered = true"
-      @mouseleave="isHovered = false"
+    class="root"
+    @mouseover="isHovered = true"
+    @mouseleave="isHovered = false"
   >
-    <a v-if="isHovered" :href="editUrl" class="edit-link">{{$t('Edit')}}</a>
+    <a v-if="isHovered" :href="editUrl" class="edit-link">{{ $t('Edit') }}</a>
 
     <div v-if="data.razdatka">
       <p>
@@ -14,9 +14,11 @@
           </a>
         </strong>
       </p>
-      <img v-if="data.razdatka.mode === 'image'" class="razdatka-image" :src="imageSrc" />
-      <p v-if="data.razdatka.mode === 'text'" class="razdatka-text">{{data.razdatka.text}}</p>
-      <p>{{data.text}}</p>
+      <img v-if="data.razdatka.mode === 'image'" class="razdatka-image" :src="imageSrc">
+      <p v-if="data.razdatka.mode === 'text'" class="razdatka-text">
+        {{ data.razdatka.text }}
+      </p>
+      <p>{{ data.text }}</p>
     </div>
 
     <p v-if="!data.razdatka">
@@ -25,20 +27,21 @@
           {{ questionNumber }}
         </a>
       </strong>
-      {{data.text}}
+      {{ data.text }}
     </p>
 
-    <a @click="isAnswerVisible = !isAnswerVisible">{{ isAnswerVisible ? $t('Hide_answer') : $t('Show_answer') }}</a>
+    <a @click="toggleAnswerVisible">{{ isAnswerVisible ? $t('Hide_answer') : $t('Show_answer') }}</a>
     <div v-if="isAnswerVisible">
-      <div>{{$t('Answer')}}: {{data.answer}}</div>
-      <div>{{$t('Commentary')}}: {{data.commentary}}</div>
-      <div>{{$t('References')}}: {{data.references}}</div>
+      <div>{{ $t('Answer') }}: {{ data.answer }}</div>
+      <div>{{ $t('Commentary') }}: {{ data.commentary }}</div>
+      <div>{{ $t('References') }}: {{ data.references }}</div>
       <v-chip
-          v-for="(authorId, index) in data.authors"
-          :key="index"
-          color="primary"
-          outline
-      >{{authorById(authorId).name}}
+        v-for="(authorId, i) in data.authors"
+        :key="i"
+        color="primary"
+        outline
+      >
+        {{ authorById(authorId).name }}
       </v-chip>
     </div>
   </div>
@@ -50,8 +53,14 @@
 
   export default {
     props: {
-      data: { type: Object, isRequired: true },
-      index: { type: Number },
+      data: {
+        type: Object,
+        required: true,
+      },
+      index: {
+        type: Number,
+        required: true,
+      },
     },
 
     data() {
@@ -88,6 +97,12 @@
           fileService.getDownloadUrl(newVal)
             .then(imageSrc => this.imageSrc = imageSrc);
         },
+      },
+    },
+
+    methods: {
+      toggleAnswerVisible() {
+        this.isAnswerVisible = !this.isAnswerVisible;
       },
     },
   };

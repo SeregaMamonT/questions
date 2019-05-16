@@ -2,10 +2,10 @@
   <v-layout row wrap justify-center>
     <v-flex xs12 sm12 md10 lg6>
       <edit-question-form
-          v-model="question"
-          :all-authors="authors"
-          :on-save="onSave"
-      ></edit-question-form>
+        v-model="question"
+        :all-authors="authors"
+        :on-save="onSave"
+      />
     </v-flex>
   </v-layout>
 </template>
@@ -16,7 +16,7 @@
   import questionService from 'app/services/questionService';
 
   export default {
-    name: 'edit-question',
+    name: 'EditQuestion',
 
     components: {
       'edit-question-form': EditQuestionForm,
@@ -34,11 +34,6 @@
       };
     },
 
-    created() {
-      this.questionId = this.$route.params.id;
-      this.questionId && questionService.readCurrent(this.questionId);
-    },
-
     computed: {
       ...mapGetters('question', {
         currentQuestion: 'current',
@@ -48,18 +43,23 @@
       }),
     },
 
+    watch: {
+      currentQuestion(value) {
+        value && Object.assign(this.question, value);
+      },
+    },
+
+    created() {
+      this.questionId = this.$route.params.id;
+      this.questionId && questionService.readCurrent(this.questionId);
+    },
+
     methods: {
       onSave(question) {
         const actionPromise = this.questionId ?
           questionService.update(this.questionId, question) :
           questionService.add(question);
         actionPromise.then(() => this.$router.push({ path: '/' }));
-      },
-    },
-
-    watch: {
-      currentQuestion(value) {
-        value && Object.assign(this.question, value);
       },
     },
   };

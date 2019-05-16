@@ -1,24 +1,23 @@
 <template>
   <v-app>
-    <app-navigation-drawer v-model="drawer"></app-navigation-drawer>
-    <app-toolbar :onIconClick="switchDrawer"></app-toolbar>
+    <app-navigation-drawer v-model="drawer" />
+    <app-toolbar :on-icon-click="switchDrawer" />
     <v-content>
       <v-container fluid>
-        <router-view></router-view>
+        <router-view />
         <v-card-text class="add-question-button">
           <v-btn
-              absolute
-              dark
-              fab
-              top
-              right
-              color="primary"
-              to="/add-question"
+            absolute
+            dark
+            fab
+            top
+            right
+            color="primary"
+            to="/add-question"
           >
             <v-icon>add</v-icon>
           </v-btn>
         </v-card-text>
-
       </v-container>
     </v-content>
   </v-app>
