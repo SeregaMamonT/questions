@@ -13,7 +13,7 @@ export default {
   }),
 
   add(question) {
-    this.checkImageSrc(question).then(() => {
+    return checkImageSrc(null, question).then(() => {
       this.addQuestion(question);
     });
   },
@@ -23,31 +23,41 @@ export default {
   },
 
   update(id, question) {
-    this.checkImageSrc(question).then(() => {
-      this.updateQuestion({ id, question });
+    const oldQuestion = this.questionById(question.id);
+    return checkImageSrc(oldQuestion, question).then(() => {
+      return this.updateQuestion({ id, question: question });
     });
   },
-
-  checkImageSrc(question) {
-    // const oldQuestion = this.questionById(question.id);
-    // const oldImage = oldQuestion && this.getRazdatkaImage(question);
-    // const newImage = this.getRazdatkaImage(question);
-    //
-    // if (question.razdatka && question.razdatka.mode === 'image') {
-    //   const imageSrc = question.razdatka.imageSrc;
-    //   if (imageSrc.domain === 'temp') {
-    //     const newStorageItem = { domain: 'image', fileName: imageSrc.fileName };
-    //     return fileService.copyFile(imageSrc, newStorageItem)
-    //       .then(() => {
-    //         question.razdatka.imageSrc = newStorageItem;
-    //         fileService.deleteFile(imageSrc);
-    //       });
-    //   }
-    // }
-    return Promise.resolve();
-  },
-
-  getRazdatkaImage(question) {
-    return question.razdatka && question.razdatka.mode === 'image' && question.razdatka.imageSrc;
-  }
 };
+
+function checkImageSrc(oldQuestion, newQuestion) {
+  const oldImage = oldQuestion && getRazdatkaImage(oldQuestion);
+  const newImage = getRazdatkaImage(newQuestion);
+
+  if (newImage) {
+    return moveImageToPersistent(newImage).then(newStorageItem => {
+      newQuestion.razdatka.imageSrc = newStorageItem;
+      if (oldImage) {
+        return fileService.deleteFile(oldImage)
+          .catch(err => console.log(err));
+      }
+    });
+  }
+  return Promise.resolve();
+}
+
+function moveImageToPersistent(newImage) {
+  if (newImage.domain === 'temp') {
+    const newStorageItem = { domain: 'image', fileName: newImage.fileName };
+    return fileService.copyFile(newImage, newStorageItem)
+      .then(() => {
+        return fileService.deleteFile(newImage)
+          .then(() => newStorageItem);
+      });
+  }
+  return Promise.resolve();
+}
+
+function getRazdatkaImage(question) {
+  return question.razdatka && question.razdatka.mode === 'image' && question.razdatka.imageSrc;
+}

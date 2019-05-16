@@ -50,10 +50,10 @@
 
     methods: {
       onSave(question) {
-        this.questionId ?
+        const actionPromise = this.questionId ?
           questionService.update(this.questionId, question) :
           questionService.add(question);
-        this.$router.push({ path: '/' });
+        actionPromise.then(() => this.$router.push({ path: '/' }));
       },
     },
 
