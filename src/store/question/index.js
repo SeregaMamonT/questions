@@ -13,6 +13,7 @@ const state = {
 const getters = {
   current: state => state.current,
   list: state => state.list,
+  questionById: state => id => state.list.find(question => question.id === id),
 };
 
 const mutations = {
@@ -64,13 +65,13 @@ const actions = {
   addQuestion({ commit }, question) {
     question.created = Firebase.firestore.FieldValue.serverTimestamp();
 
-    db.collection('questions').add(question)
+    return db.collection('questions').add(question)
       .then(console.log)
       .catch(console.log);
   },
 
   updateQuestion({ commit }, { id, question }) {
-    db.collection('questions').doc(id).set(question)
+    return db.collection('questions').doc(id).set(question)
       .then(console.log)
       .catch(console.log);
   },

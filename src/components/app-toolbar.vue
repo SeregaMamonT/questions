@@ -1,11 +1,11 @@
 <template>
   <v-toolbar app>
-    <v-toolbar-side-icon @click.stop="onIconClick"></v-toolbar-side-icon>
+    <v-toolbar-side-icon @click.stop="onIconClick" />
     <router-link to="/" class="toolbar-title">
-      <v-toolbar-title>{{$t('Questions')}}</v-toolbar-title>
+      <v-toolbar-title>{{ $t('Questions') }}</v-toolbar-title>
     </router-link>
-    <v-spacer></v-spacer>
-    <login-menu></login-menu>
+    <v-spacer />
+    <login-menu />
   </v-toolbar>
 </template>
 
@@ -14,14 +14,17 @@
   import LoginMenu from './login-menu';
 
   export default {
-    name: 'app-toolbar',
+    name: 'AppToolbar',
 
     components: {
       'login-menu': LoginMenu,
     },
 
     props: {
-      onIconClick: { type: Function },
+      onIconClick: {
+        type: Function,
+        required: true,
+      },
     },
 
     computed: {

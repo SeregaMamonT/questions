@@ -1,7 +1,7 @@
 import store from 'app/store';
 import {getTimestampName} from './fileNameService';
 
-function downloadDump() {
+function createDump() {
   const fileName = getTimestampName('minutes', 'dump_', '.json', '_');
   download(fileName, JSON.stringify(getData()));
 }
@@ -26,4 +26,6 @@ function download(filename, text) {
   document.body.removeChild(element);
 }
 
-export default downloadDump;
+export default {
+  createDump
+};

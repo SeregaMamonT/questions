@@ -2,11 +2,13 @@
   <v-layout row wrap justify-center>
     <v-flex xs12 sm12 md10 lg6>
       <h1>Admin page</h1>
-      <v-layout justify-start v-for="(user, index) in users" class="user" :key="index">
+      <v-layout v-for="(user, index) in users" :key="index" justify-start class="user">
         <div>{{ user.email }}</div>
         <div>{{ user.customClaims }}</div>
-        <v-btn @click="onSetRole(index)">Set Role</v-btn>
-        <input v-model="roles[index]" type="text"/>
+        <v-btn @click="onSetRole(index)">
+          Set Role
+        </v-btn>
+        <input v-model="roles[index]" type="text">
       </v-layout>
     </v-flex>
   </v-layout>
@@ -16,12 +18,18 @@
   import { mapActions, mapGetters } from 'vuex';
 
   export default {
-    name: 'admin-page',
+    name: 'AdminPage',
 
     data() {
       return {
         roles: [],
       }
+    },
+
+    computed: {
+      ...mapGetters('admin', {
+        users: 'users'
+      })
     },
 
     created() {
@@ -41,12 +49,6 @@
           role: newRole,
         });
       }
-    },
-
-    computed: {
-      ...mapGetters('admin', {
-        users: 'users'
-      })
     }
   };
 </script>

@@ -1,10 +1,10 @@
 <template>
   <div class="question-list">
     <question
-        v-for="(question, index) in questions"
-        :key="index + 1"
-        :index="index + 1"
-        :data="question"
+      v-for="(question, index) in questions"
+      :key="index + 1"
+      :index="index + 1"
+      :data="question"
     />
   </div>
 </template>
@@ -18,7 +18,10 @@
     },
 
     props: {
-      questions: Array,
+      questions: {
+        type: Array,
+        default: () => [],
+      },
     },
   };
 </script>
