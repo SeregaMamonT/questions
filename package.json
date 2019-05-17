@@ -1,6 +1,6 @@
 {
   "name": "questions",
-  "version": "0.1.416",
+  "version": "0.2.3",
   "description": "",
   "main": "index.js",
   "engines": {
@@ -39,7 +39,7 @@
     "test": "echo \"Not error: no test specified\" && exit 0",
     "deploy": "firebase deploy --only hosting --token=$FIREBASE_DEPLOY_TOKEN",
     "update-patch": "npm version patch -m \"Autoincrementing version to %s [ci skip]\"",
-    "update-minor": "npm version minor",
+    "update-minor": "npm version minor -m \"Autoincrementing version to %s [ci skip]\"",
     "lint": "eslint --ext .js,.vue src"
   },
   "repository": {

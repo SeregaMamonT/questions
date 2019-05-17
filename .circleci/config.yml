@@ -34,15 +34,41 @@ jobs:
 
       - run: yarn run test
 
-      - run:
-          name: bump version
-          command: |
-              git config user.email "$GIT_USER_EMAIL"
-              git config user.name "$GIT_USER_NAME"
-              yarn run update-patch
-              git diff
-              git push origin dev
-              git push --tags
+  bump_patch_version:
+      docker:
+        - image: circleci/node:11.9
+
+      working_directory: ~/repo
+
+      steps:
+        - checkout
+
+        - run:
+            name: Bump patch version
+            command: |
+                git config user.email "$GIT_USER_EMAIL"
+                git config user.name "$GIT_USER_NAME"
+                yarn run update-patch
+                git push origin dev
+                git push --tags
+
+  bump_minor_version:
+        docker:
+          - image: circleci/node:11.9
+
+        working_directory: ~/repo
+
+        steps:
+          - checkout
+
+          - run:
+              name: Bump minor version
+              command: |
+                  git config user.email "$GIT_USER_EMAIL"
+                  git config user.name "$GIT_USER_NAME"
+                  yarn run update-minor
+                  git push origin master
+                  git push --tags
 
   deploy:
     docker:
@@ -73,9 +99,21 @@ workflows:
   build_and_deploy:
     jobs:
       - build
-      - deploy:
+      - bump_patch_version:
           requires:
             - build
+          filters:
+            branches:
+              only: dev
+      - bump_minor_version:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - bump_minor_version
           filters:
             branches:
               only: master
