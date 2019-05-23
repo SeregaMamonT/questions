@@ -32,21 +32,6 @@ jobs:
                 git push origin dev
                 git push --tags
 
-  bump_minor_version:
-        docker:
-          - image: circleci/node:11.9
-        working_directory: ~/repo
-        steps:
-          - checkout
-          - run:
-              name: Bump minor version
-              command: |
-                  git config user.email "$GIT_USER_EMAIL"
-                  git config user.name "$GIT_USER_NAME"
-                  yarn run update-minor
-                  git push origin master
-                  git push --tags
-
   deploy:
     docker:
       - image: circleci/node:11.9
@@ -76,15 +61,9 @@ workflows:
           filters:
             branches:
               only: dev
-      - bump_minor_version:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
       - deploy:
           requires:
-            - bump_minor_version
+            - bump_patch_version
           filters:
             branches:
               only: master
