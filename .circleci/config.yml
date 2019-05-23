@@ -63,7 +63,7 @@ workflows:
               only: dev
       - deploy:
           requires:
-            - bump_patch_version
+            - build
           filters:
             branches:
               only: master
