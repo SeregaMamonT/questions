@@ -59,7 +59,7 @@
       },
       index: {
         type: Number,
-        required: true,
+        default: null,
       },
     },
 
