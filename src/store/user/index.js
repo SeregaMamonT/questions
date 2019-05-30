@@ -69,7 +69,7 @@ const actions = {
     const email = firebase.auth().currentUser.email;
     const credential = Firebase.auth.EmailAuthProvider.credential(email, oldPassword);
 
-    firebase.auth().currentUser.reauthenticateAndRetrieveDataWithCredential(credential)
+    firebase.auth().currentUser.reauthenticateWithCredential(credential)
       .then(() => {
         firebase.auth().currentUser.updatePassword(newPassword)
           .then(() => console.log('changed'))
