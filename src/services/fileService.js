@@ -1,9 +1,7 @@
 import firebase from 'app/firebase';
 
-function getDownloadUrl(storageUnit) {
-  return storageUnit ?
-    ref(storageUnit).getDownloadURL() :
-    Promise.resolve(null);
+async function getDownloadUrl(storageUnit) {
+  return storageUnit ? ref(storageUnit).getDownloadURL() : null;
 }
 
 function saveTempImage(file, imageName, eventHandlers) {
@@ -44,21 +42,20 @@ function uploadFile(event) {
   return Promise.resolve(null);
 }
 
-function getFileData(storageUnit) {
-  return ref(storageUnit).getDownloadURL().then(url => {
-    return fetch(url).then(res => res.blob());
-  });
+async function getFileData(storageUnit) {
+  const url = await getDownloadUrl(storageUnit);
+  const res = await fetch(url);
+  return await res.blob();
 }
 
 function copyFile(sourceUnit, destinationUnit) {
-  return new Promise((resolve, reject) => {
-    getFileData(sourceUnit).then(fileData => {
-      saveToStorage(fileData, destinationUnit, {
-        onStateChanged: () => {},
-        onError: err => reject(err),
-        onComplete: () => resolve(),
-      })
-    });
+  return new Promise(async (resolve, reject) => {
+    const fileData = await getFileData(sourceUnit);
+    saveToStorage(fileData, destinationUnit, {
+      onStateChanged: () => {},
+      onError: err => reject(err),
+      onComplete: () => resolve(),
+    })
   });
 }
 
