@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap justify-center>
+  <v-layout wrap justify-center>
     <v-flex xs12 sm9 md6 lg3>
       <password-field
         v-model="oldPassword"

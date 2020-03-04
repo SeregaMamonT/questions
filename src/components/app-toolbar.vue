@@ -1,12 +1,12 @@
 <template>
-  <v-toolbar app>
-    <v-toolbar-side-icon @click.stop="onIconClick" />
+  <v-app-bar app>
+    <v-app-bar-nav-icon @click.stop="onIconClick" />
     <router-link to="/" class="toolbar-title">
       <v-toolbar-title>{{ $t('Questions') }}</v-toolbar-title>
     </router-link>
     <v-spacer />
     <login-menu />
-  </v-toolbar>
+  </v-app-bar>
 </template>
 
 <script>

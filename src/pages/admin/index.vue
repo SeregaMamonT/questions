@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap justify-center>
+  <v-layout wrap justify-center>
     <v-flex xs12 sm12 md10 lg6>
       <h1>Admin page</h1>
       <v-layout v-for="(user, index) in users" :key="index" justify-start class="user">

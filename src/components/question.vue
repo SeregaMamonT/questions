@@ -39,7 +39,7 @@
         v-for="(authorId, i) in data.authors"
         :key="i"
         color="primary"
-        outline
+        outlined
       >
         {{ authorById(authorId).name }}
       </v-chip>
