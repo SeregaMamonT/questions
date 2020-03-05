@@ -1,6 +1,6 @@
 <template>
   <v-toolbar-items>
-    <v-btn v-if="isAuthenticated" flat>
+    <v-btn v-if="isAuthenticated" text>
       {{ profile.email }}
     </v-btn>
   </v-toolbar-items>

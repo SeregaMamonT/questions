@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap justify-center>
+  <v-layout wrap justify-center>
     <v-flex xs12 sm12 md10 lg6>
       <question-list :questions="questions" />
     </v-flex>

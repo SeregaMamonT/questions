@@ -10,14 +10,14 @@ const router = new VueRouter({
   routes
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (isLogout(to)) {
-    store.dispatch('user/logout').then(() => next('/login'));
+    await store.dispatch('user/logout');
+    next('/login');
   }
   else if (requiresAuth(to)) {
-    store.dispatch('waitUntilLoaded').then(() => {
-      isLoggedIn() ? next() : next('/login');
-    });
+    await store.dispatch('waitUntilLoaded');
+    isLoggedIn() ? next() : next('/login');
   }
   else {
     next();

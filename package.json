@@ -1,35 +1,37 @@
 {
   "name": "questions",
-  "version": "0.3.0",
+  "version": "0.3.7",
   "description": "",
   "main": "index.js",
   "engines": {
     "yarn": "^1.13.0"
   },
   "dependencies": {
-    "firebase": "~5.8.5",
-    "jimp": "^0.6.0",
-    "vue": "^2.5.21",
-    "vue-i18n": "^8.1.0",
-    "vue-router": "^3.0.2",
-    "vuetify": "^1.5.4",
-    "vuex": "^3.1.0"
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/runtime": "^7.8.4",
+    "firebase": "~7.9.3",
+    "jimp": "^0.9.5",
+    "vue": "^2.6.11",
+    "vue-i18n": "^8.15.4",
+    "vue-router": "^3.1.6",
+    "vuetify": "^2.2.15",
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
     "babel-loader": "^8.0.5",
-    "css-loader": "^1.0.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.2",
-    "firebase-tools": "^6.4.0",
-    "vue-loader": "^15.2.6",
+    "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^6.2.1",
+    "firebase-tools": "^7.14.0",
+    "vue-loader": "^15.9.0",
     "vue-style-loader": "^4.1.1",
-    "vue-template-compiler": "^2.5.21",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3",
-    "webpack-dev-server": "^3.2.1"
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.42.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   },
   "scripts": {
     "dev": "webpack-dev-server",
