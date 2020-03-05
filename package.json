@@ -10,7 +10,7 @@
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/runtime": "^7.8.4",
     "firebase": "~7.9.3",
-    "jimp": "^0.6.4",
+    "jimp": "^0.9.5",
     "vue": "^2.6.11",
     "vue-i18n": "^8.15.4",
     "vue-router": "^3.1.6",
