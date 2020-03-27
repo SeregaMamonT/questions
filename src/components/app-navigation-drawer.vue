@@ -10,31 +10,37 @@
         v-if="isLoggedIn"
         to="/"
         :text="$t('Home')"
-        icon="home"
+        icon="mdi-home"
       />
+<!--      <url-list-tile-->
+<!--          v-if="isLoggedIn"-->
+<!--          to="/balance"-->
+<!--          :text="$t('Balance')"-->
+<!--          icon="mdi-currency-usd"-->
+<!--      />-->
       <url-list-tile
         v-if="isAdmin"
         to="/admin"
         :text="$t('Admin')"
-        icon="verified_user"
+        icon="mdi-shield-check"
       />
       <url-list-tile
         v-if="isLoggedIn"
         to="/change-password"
         :text="$t('Change_password')"
-        icon="update"
+        icon="mdi-update"
       />
       <url-list-tile
         v-if="isLoggedIn"
         :on-click="onCreateDump"
         :text="$t('Backup')"
-        icon="backup"
+        icon="mdi-cloud-upload"
       />
       <url-list-tile
         v-if="isLoggedIn"
         to="/logout"
         :text="$t('Sign_out')"
-        icon="exit_to_app"
+        icon="mdi-exit-to-app"
       />
     </v-list>
   </v-navigation-drawer>
