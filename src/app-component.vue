@@ -15,7 +15,7 @@
             color="primary"
             to="/add-question"
           >
-            <v-icon>add</v-icon>
+            <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-card-text>
       </v-container>

@@ -3,7 +3,7 @@
     v-model="modelValue"
     :type="showPassword ? 'text' : 'password'"
     :label="$t(label)"
-    :append-icon="showPassword ? 'visibility_off' : 'visibility'"
+    :append-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
     @click:append="showPassword = !showPassword"
   />
 </template>
