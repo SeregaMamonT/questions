@@ -27,5 +27,6 @@ export default {
     Razdatka_text: 'Текст раздатки',
     Add_razdatka: 'Добавить раздатку',
     Remove_razdatka: 'Убрать раздатку',
+    Balance: 'Баланс',
   },
 };

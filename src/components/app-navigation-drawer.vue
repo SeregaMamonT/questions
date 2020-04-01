@@ -12,12 +12,12 @@
         :text="$t('Home')"
         icon="mdi-home"
       />
-<!--      <url-list-tile-->
-<!--          v-if="isLoggedIn"-->
-<!--          to="/balance"-->
-<!--          :text="$t('Balance')"-->
-<!--          icon="mdi-currency-usd"-->
-<!--      />-->
+      <url-list-tile
+          v-if="isLoggedIn"
+          to="/balance"
+          :text="$t('Balance')"
+          icon="mdi-currency-usd"
+      />
       <url-list-tile
         v-if="isAdmin"
         to="/admin"

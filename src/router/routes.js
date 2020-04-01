@@ -5,6 +5,7 @@ import ChangePasswordPage from 'app/pages/change-password';
 import EditQuestionPage from 'app/pages/edit-question';
 import LoginPage from 'app/pages/login';
 import RegisterPage from 'app/pages/register';
+import BalancePage from 'app/pages/balance';
 
 export default [
   { path: '/', component: MainPage },
@@ -15,4 +16,5 @@ export default [
   { path: '/edit-question/:id', component: EditQuestionPage },
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage },
+  { path: '/balance', component: BalancePage },
 ];

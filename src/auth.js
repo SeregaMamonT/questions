@@ -10,6 +10,7 @@ firebase.auth().onAuthStateChanged(user => {
     store.commit(SET_LOADED);
     store.dispatch('author/list');
     store.dispatch('question/list');
+    store.dispatch('balance/list');
   }
   else {
     store.commit(`user/${LOGOUT}`);

@@ -5,6 +5,7 @@ import user from './user';
 import question from './question';
 import admin from './admin';
 import author from './author';
+import balance from './balance';
 import {SET_LOADED} from 'app/store/mutations';
 
 Vue.use(Vuex);
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     question,
     admin,
     author,
+    balance,
   },
 
   state: {
