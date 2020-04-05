@@ -37,6 +37,7 @@
         <change-balance-dialog
             v-model="changingBalance"
             :show="showChangeBalanceDialog"
+            @close="onClose"
         />
 
       </v-col>
@@ -69,6 +70,12 @@
         balances: 'list',
       }),
     },
+
+    methods: {
+      onClose() {
+        this.showChangeBalanceDialog = false;
+      }
+    }
   };
 </script>
 

@@ -1,59 +1,38 @@
 <template>
-  <v-dialog
-      :value="show"
-      max-width="500px"
+  <basic-dialog
+      @close="closeHandler"
+      :show="show"
+      title="Change balance..."
   >
-    <v-card>
-      <v-card-title>
-        <span>Change balance for ...</span>
-        <v-spacer></v-spacer>
-        <v-menu
-            bottom
-            left
-        >
-          <template v-slot:activator="{ on }">
-
-          </template>
-        </v-menu>
-      </v-card-title>
-      <v-card-actions>
-        <v-btn
-            color="primary"
-            text
-            @click="show = false"
-        >
-          Close
-        </v-btn>
-      </v-card-actions>
-    </v-card>
-  </v-dialog>
+    <v-container>
+      <h3>asdadasas</h3>
+    </v-container>
+  </basic-dialog>
 </template>
 
 <script>
+  import BasicDialog from './basic-dialog';
+
   export default {
     name: "ChangeBalanceDialog",
 
+    components: {
+      'basic-dialog': BasicDialog,
+    },
+
     props: {
-      value: {
-        type: Object,
-        required: true,
-      },
       show: {
         type: Boolean,
         required: true,
       },
+      onClose: {
+        value: Function
+      },
     },
 
-    data() {
-      return {
-        modelValue: this.value,
-        show: this.show,
-      };
-    },
-
-    watch: {
-      modelValue(val) {
-        this.$emit('input', val);
+    methods: {
+      closeHandler() {
+        this.$emit('close');
       }
     }
   };
