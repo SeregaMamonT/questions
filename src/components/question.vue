@@ -95,7 +95,8 @@
         immediate: true,
         handler(newVal) {
           fileService.getDownloadUrl(newVal)
-            .then(imageSrc => this.imageSrc = imageSrc);
+                  .then(imageSrc => this.imageSrc = imageSrc)
+                  .catch(err => console.log(`Failed to load image ${JSON.stringify(newVal)}`, err));
         },
       },
     },

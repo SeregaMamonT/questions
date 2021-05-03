@@ -48,9 +48,9 @@ async function getFileData(storageUnit) {
   return await res.blob();
 }
 
-function copyFile(sourceUnit, destinationUnit) {
-  return new Promise(async (resolve, reject) => {
-    const fileData = await getFileData(sourceUnit);
+async function copyFile(sourceUnit, destinationUnit) {
+  const fileData = await getFileData(sourceUnit);
+  return new Promise((resolve, reject) => {
     saveToStorage(fileData, destinationUnit, {
       onStateChanged: () => {},
       onError: err => reject(err),
