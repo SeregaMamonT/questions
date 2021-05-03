@@ -26,5 +26,11 @@
   };
 </script>
 
-<style>
+<style scoped>
+  .question-list {
+    margin: -12px;
+    border-width: 0 0.08em;
+    border-style: dotted;
+    border-color: skyblue;
+  }
 </style>

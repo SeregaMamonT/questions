@@ -110,14 +110,13 @@
 
 <style scoped>
   .root {
-    padding: 0.4em;
-    border: 0.15em dashed transparent;
-    border-radius: 1em;
+    padding: 0.5em 0.6em 0.4em 0.6em;
+    border-bottom: 0.08em dotted skyblue;
     position: relative;
   }
 
   .root:hover {
-    border-color: dodgerblue;
+    background: rgba(0, 0, 0, 0.02);
   }
 
   .question-index:not(:hover) {
